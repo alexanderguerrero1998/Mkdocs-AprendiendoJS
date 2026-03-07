@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>PROGRAMCION ASINCRONA - APRENDIENDO JAVASCRIPT</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "PROGRAMCION ASINCRONA";
+        var mkdocs_page_input_path = "bookJsEloq\\cap11jsE.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> APRENDIENDO JAVASCRIPT
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption"><span class="caption-text">JAVASCRIPT ELOQUENT</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../cap5jsE/">FUNCIONES PRDEN SUPERIOR</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../cap6jsE/">OBJETOS</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../cap8jsE/">BUGS - ERRORES</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../cap9jsE/">EXPRESIONES REGULARES</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../cap10jsE/">MIDULOS</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">PROGRAMCION ASINCRONA</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#asincronia">ASINCRONIA</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#promesas">PROMESAS</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#funciones-asincronicas">FUNCIONES ASINCRONICAS</a>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../cap13jsE/">JAVASCRIPT - EL NAVEGADOR</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../cap14jsE/">DOM</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../cap15jsE/">MANEJO DE EVENTOS</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../cap18jsE/">HTTP Y FORMULARIOS</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../cap20jsE/">NODE JS</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">APRENDIENDO JAVASCRIPT</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">JAVASCRIPT ELOQUENT</li>
+      <li class="breadcrumb-item active">PROGRAMCION ASINCRONA</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="javascript-cap11">JAVASCRIPT CAP11</h1>
+<h2 id="asincronia">ASINCRONIA</h2>
+<p>La asincronía es un comportamiento natural del entorno de ejecucion. Por lo tanto, la asincronia no es algo que tu puedas controlar, si no mas bien, es algo con lo que 
+tienes que aprender a lidear, para ello existen tres formas: <strong>(callbacks, promesas y async/await)</strong> cada una mas elegante que la otra, en un intento de que el programa se vea lo mas "natural y normal" posible,</p>
+<p>Entoces este comportamiento(asincronia) nos dice: que un programa puede 
+<strong>seguir ejecutandose</strong> sin la necesidad de esperar a que una tarea lenta termine.
+Esto quiere decir que, cuando ciertas operaciones tardan, el sistema las 
+delega para no bloquear el hilo, luego cuando la funcion asincrona termina
+lo informara por medio de un: callback, una promesa o async-await.</p>
+<p>Si una funcion realiza algo que tarda tiempo y no quiere bloquear el hilo de<br />
+ejecucion, esta funcion se considera asincrona. </p>
+<p>Una funcion asincrona permite  <strong>iniciar un proceso que tardará en completarse y luego ceder el control inmediatamente</strong>, 
+sin bloquear lo demás, para que cuando ese  proceso termine pueda avisarle a tu programa (por ejemplo, mediante un callback, 
+una Promise, o await).</p>
+<p>Una operacion asincrona simpre necesita una de estas tres cosas: </p>
+<ul>
+<li>Un <code>callback</code>  </li>
+<li>Un <code>.then()</code>  </li>
+<li>Un <code>await</code>  </li>
+</ul>
+<pre><code class="language-js">// EJM. CALLBACK EN FUNCION ASINCRONA
+function imprimir(callback) {
+  let frase =  &quot; funcion de callback en una funcion asincrona..&quot;
+  setTimeout( ()=&gt; callback(frase),5000)
+
+}
+imprimir((texto) =&gt; console.log(texto))
+console.log(&quot;Continuamos....&quot;)
+
+// → Continuamos....
+ // funcion de callback en una funcion asincrona..
+
+//  ()=&gt; callback(frase) ← Esto pasa la funcion para ajecutarala         
+// callback(frase) ← Esto pasa el resultado y no la funcion
+
+</code></pre>
+<h2 id="promesas">PROMESAS</h2>
+<p>Una promesa es un recibo que representa un valor que aun no puede estar disponible. </p>
+<p>Proporciona un metodo <code>then()</code> que permite registrar una funcion que debe ser llamada 
+cuando la accion por la que esta esperando finalice</p>
+<p>Cuando la promesa se resuelve, 
+se manda a llamar a las funciones registradas en <code>then()</code>conjuntamente con el valor resuelto. La forma mas sencilla de crear una promesa es llamando a <strong>Promise.resolve</strong>. </p>
+<p>Esta funcion se asegura que el valor que le proporcionas este envuleto en una promesa</p>
+<pre><code class="language-js">let numero = Promise.resolve(15)`
+`numero.then(x=&gt; console.log(x)) //→ 15 (Aqui la promesa ya esta resuelta)
+</code></pre>
+<p>Para crear un promesa que no se resuelva inmediatamente se usa <strong>Promise</strong> como constructor. Donde el constructor espera una <em>funcion</em> como argumento. <strong>Estructura Interna → new Promise(executor)</strong> donde <em>resolve y reject</em> son los parametros de esta funcion interna y ademas son  funciones, es decir, que <em>resolve y reject</em> son parametros que reciben funciones, que se las da internamente javascript. Ejm.</p>
+<pre><code class="language-js">// EJM.1 USANDO PROMESA 
+let a = new Promise(resolve =&gt; resolve(&quot;Hola&quot;)) // ← Este (RESOLVE) es el parametro que recibe una funcion
+a.then(console.log) // → Hola`
+
+// EJM.2  PROMESA EN FUNCION
+function getresult() {
+return new Promise(resolve =&gt; resolve(&quot;Hola&quot;))
+}
+getresult().then(console.log) // → Hola
+</code></pre>
+<p>La promesa cambia de estado cuando ejecutas resolve() o reject(),
+no cuando “recibe un valor”</p>
+<pre><code class="language-js">new Promise((resolve) =&gt; {
+   resolve();
+}); 
+
+//Aquí no pasa ningún valor.
+//¿Cambia de estado?
+//✔ Sí.
+//Pasa de pending a fulfilled.
+//El valor interno simplemente será undefined.
+</code></pre>
+<pre><code class="language-js">// EJM. PROMESA EN FUNCION CON THEN
+ function getresult()
+{
+    return new Promise(resolve =&gt; resolve``(&quot;Hola&quot;))
+    .then(x =&gt; x +&quot; mi nombre es &quot;)
+    .then(x =&gt; x + &quot;Alex&quot;)
+    .then(x=&gt; console.log(x)) // → Eso devuelve undefined (debido a que la funcion console.log devuelve undefined)                
+                              // Si quisieras seguir encadenando después, ya no tendrías el string.
+}
+getresult() // → Hola mi nombre es Alex
+</code></pre>
+<p>En Resumen:
+*  <code>.then()</code> reacciona cuando la promesa se cumple.
+* Recibe el valor de resolve.
+* Devuelve una nueva promesa.
+* Permite encadenar procesos asincrónicos.
+* Es el mecanismo que hace posible el flujo secuencial sin callbacks anidados.
+El <strong>then()</strong> se puede llamar a dentro como es el caso, o tambien encadenarlo a la funcion <em>getresult()</em> </p>
+<h2 id="funciones-asincronicas">FUNCIONES ASINCRONICAS</h2>
+<p>Una palabra <em>async</em> tiene la palabra reservada <em>async</em> antes
+de la palabra function. Cuando se llama a una funcion de esta manera se devuelve una promesa.</p>
+<p>Dentro  de una funcion <em>async</em>, la palabra <em>await</em> puede colocarse
+delante de expresion para <strong>esperar</strong> a que una promesa se resuelva y 
+luego continuar con la ejecucion de la funcion.
+Si la promesa es rechazada se genera una excepcion en el punto del <em>await</em></p>
+<p>Una funcion asi ya no se ejecuta como una funcion regular de JavaScript, 
+de principio afin, en su lugar puede estar congelada en cualquier punto
+que tenga un <em>await</em> y puede continuar mas tarde.</p>
+<p>Una funcion que tenga <em>async</em> <strong>siempre</strong> devuelve una promesa aunque no lo veas.Ejmp.</p>
+<pre><code class="language-js">async function saludo() {
+  return &quot;Hola&quot;;
+}
+console.log(saludo()) // → Promise {'Hola'} 
+</code></pre>
+<p><code>await</code> se ocupa <em>unicamente</em> cuando vas a recibir una <em>promesa</em>. 
+Si no hay promesa, no hay nada que recibir.</p>
+<p><code>await</code> siempre necesita una funcion <strong>async</strong> que la contenga</p>
+<pre><code class="language-js">function sumar(a,b) {
+  return new Promise(resolve =&gt; setTimeout(() =&gt; resolve(a*b),5000))
+}
+
+async function resultado(x,y) {
+  let res =  &quot;Somos la respuesta de await!&quot; + await sumar(x,y)
+  console.log(res)
+}
+resultado(1,2)
+console.log(&quot;Seguimos trabajando hasta que se resuelva...&quot;)
+// → Seguimos trabajando hasta que se resuelva...
+// Somos la respuesta de await!2
+
+</code></pre>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../cap10jsE/" class="btn btn-neutral float-left" title="MIDULOS"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../cap13jsE/" class="btn btn-neutral float-right" title="JAVASCRIPT - EL NAVEGADOR">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../cap10jsE/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../cap13jsE/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>FUNCIONES PRDEN SUPERIOR - APRENDIENDO JAVASCRIPT</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "FUNCIONES PRDEN SUPERIOR";
+        var mkdocs_page_input_path = "bookJsEloq\\cap5jsE.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> APRENDIENDO JAVASCRIPT
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption"><span class="caption-text">JAVASCRIPT ELOQUENT</span></p>
+              <ul class="current">
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">FUNCIONES PRDEN SUPERIOR</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#funciones-de-orden-superior">FUNCIONES DE ORDEN SUPERIOR</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#mas-informacion">MAS INFORMACION</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#resumen">RESUMEN</a>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../cap6jsE/">OBJETOS</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../cap8jsE/">BUGS - ERRORES</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../cap9jsE/">EXPRESIONES REGULARES</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../cap10jsE/">MIDULOS</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../cap11jsE/">PROGRAMCION ASINCRONA</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../cap13jsE/">JAVASCRIPT - EL NAVEGADOR</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../cap14jsE/">DOM</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../cap15jsE/">MANEJO DE EVENTOS</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../cap18jsE/">HTTP Y FORMULARIOS</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../cap20jsE/">NODE JS</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">APRENDIENDO JAVASCRIPT</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">JAVASCRIPT ELOQUENT</li>
+      <li class="breadcrumb-item active">FUNCIONES PRDEN SUPERIOR</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="javascrip-cap5">JAVASCRIP CAP5</h1>
+<h2 id="funciones-de-orden-superior">FUNCIONES DE ORDEN SUPERIOR</h2>
+<p>Una funcion de orden superior (<em>tambien conocidas como </em>funciones de alto orden<em>)
+es aquella funcion que retorna una funcion, o recibe una funcion como parametro.
+Este tipo de funciones nos permiten </em>abstraer* sobre acciones, no solo
+sobre valores.</p>
+<pre><code class="language-js">//EJM. #01
+
+// FUNCIONES QUE RETORNAN FUNCIONES
+function mayorQue(n){
+    return m =&gt; m &gt; n;
+}
+let mayorQue10 = mayorQue(10);
+console.log(mayorQue10(11)) // → true
+
+// FUNCIONES QUE EJECUTAN MODIFICAN OTRAS FUNCIONES
+function ruidosa(f) {
+  return (...args) =&gt; {
+    console.log(&quot;llamando con&quot;, args);
+    let resultado = f(...args);
+    console.log(&quot;llamado con&quot;, args, &quot;, devolvió&quot;, resultado);
+    return resultado;
+  };
+}
+// → llamando con [3, 2, 1]
+// → llamado con [3, 2, 1] , devolvió 1
+
+// FUNCIONES QUE PROVEEN NUEVOS TIPOS DE FLUJO DE CONTROL
+function aMenosQue(prueba, entonces) {
+if (!prueba) entonces();
+}
+
+repetir(3, n =&gt; {
+    aMenosQue(n % 2 == 1, () =&gt; {
+    console.log(n, &quot;es par&quot;);
+    });
+});
+// → 0 es par
+// → 2 es par
+
+</code></pre>
+<h3 id="mas-informacion">MAS INFORMACION</h3>
+<p><a href="https://es.scribd.com/document/688320109/7-Funciones-de-Order-Superior">REVISA AQUI MAS INFORMACION</a></p>
+<h2 id="resumen">RESUMEN</h2>
+<p>Poder pasar valores de funciones a otras funciones es un aspecto muy útil de
+JavaScript. Nos permite escribir funciones que modelan cálculos con “vacíos”.
+El código que llama a estas funciones puede llenar los vacíos proporcionando
+valores de funciones</p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../cap6jsE/" class="btn btn-neutral float-right" title="OBJETOS">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+    
+      <span><a href="../cap6jsE/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

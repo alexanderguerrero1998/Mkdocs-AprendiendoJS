@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>DOM - APRENDIENDO JAVASCRIPT</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "DOM";
+        var mkdocs_page_input_path = "bookJsEloq\\cap14jsE.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> APRENDIENDO JAVASCRIPT
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption"><span class="caption-text">JAVASCRIPT ELOQUENT</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../cap5jsE/">FUNCIONES PRDEN SUPERIOR</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../cap6jsE/">OBJETOS</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../cap8jsE/">BUGS - ERRORES</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../cap9jsE/">EXPRESIONES REGULARES</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../cap10jsE/">MIDULOS</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../cap11jsE/">PROGRAMCION ASINCRONA</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../cap13jsE/">JAVASCRIPT - EL NAVEGADOR</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">DOM</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#estructura-del-documento">ESTRUCTURA DEL DOCUMENTO</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#arboles">ARBOLES</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#movimientos-atraves-del-arbol">MOVIMIENTOS ATRAVES DEL ARBOL</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#encontrando-elementos">ENCONTRANDO ELEMENTOS</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#cambiando-el-documento">CAMBIANDO EL DOCUMENTO</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#creacion-de-nodos">CREACION DE NODOS</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#atributos">ATRIBUTOS</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#colecciones-estaticas">COLECCIONES ESTATICAS</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#porque-importa">PORQUE IMPORTA?</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#resumen-practico">RESUMEN PRACTICO</a>
+    </li>
+        </ul>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#posicionamiento-y-animacion">POSICIONAMIENTO Y ANIMACION</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#resumen">RESUMEN</a>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../cap15jsE/">MANEJO DE EVENTOS</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../cap18jsE/">HTTP Y FORMULARIOS</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../cap20jsE/">NODE JS</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">APRENDIENDO JAVASCRIPT</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">JAVASCRIPT ELOQUENT</li>
+      <li class="breadcrumb-item active">DOM</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="javascript-cap14">JAVASCRIPT CAP14</h1>
+<h2 id="estructura-del-documento">ESTRUCTURA DEL DOCUMENTO</h2>
+<p>Un documento HTML es como un conjunto anidado de cajas (etiquetas).</p>
+<p>Para cada caja <em>hay un objeto</em> con el que podemos interactuar
+para saber cosas como que etiqueta HTML representa o
+que cajas y textos contiene.</p>
+<p>Esta representacion se llama Modelo de Objetos del Documento, 
+o DOM en resumen.</p>
+<p>El enlace global <strong>document</strong> nos da acceso a estos objetos(cajas). 
+Su propiedad <strong>documentElement</strong> hace referencia al objeto 
+que representa la etiqueta <code>&lt;html&gt;</code></p>
+<h2 id="arboles">ARBOLES</h2>
+<p>Llamamos <em>arbol</em> a una estructura de datos cuando tiene una estructura
+de remificaciones y tiene una raiz unica y bien definida. En el caso del <em>DOM</em>
+<strong>document.documentElement</strong> sirve como la raiz.</p>
+<p>Un arbol tipico tiene diferentes tipos de nodos.Los nodos de aplicacion
+ pueden tener hijos, mientras que los identificadores y valores son <em>nodos hojas</em> 
+ o nodos sin hijos.</p>
+<p>Lo mismo ocurren en el DOM. Los nodos de los <em>elementos</em> que representan 
+etiquetas HTML determinan la estructura del documento. Estos pueden tener 
+nodos hijos. Ejemplo de dicho nodo es <strong>document.body</strong>. Algunos de estos 
+hijos pueden ser nodo hoja, como fragmentos de texto o comentarios</p>
+<p>Cada objeto de nodo del DOM tiene una propiedad <strong>nodeType</strong> 
+que contiene un codigo que identifica el tipo  de nodo. </p>
+<ul>
+<li>Los elementos HTML tiene el codigo 1 que se define como la 
+  propiedad constante <strong>Node.ELEMENT_NODE</strong> </li>
+<li>Los nodos de texto obtiene el codigo 3 <strong>(Node.TEXT_NODE)</strong></li>
+<li>Los comentarios tienen el codigo 8 <strong>(Node.COMMENT_NODE)</strong></li>
+</ul>
+<h2 id="movimientos-atraves-del-arbol">MOVIMIENTOS ATRAVES DEL ARBOL</h2>
+<p>Cada nodo tiene un propiedad <strong>parentNode</strong> que apunta al nodo del
+que forma parte, si lo hay. De igual manera, cada nodo del elemento (tipo1)
+tiene una propiedad <strong>childNodes</strong> que apunta a un objeto similar a un 
+array que contiene sus nodos hijos.</p>
+<p>Con esto podrias movere por todo el arbol utilizando estos 
+enlaces pradre e hijo. Pero JS te da otros enlaces. Ejm. <em>firsChil y lastChild</em>
+apuntan a los primeros y ultimos elementos hijos o tiene un valor null 
+para cada nodo sin hijos. <em>previousSibling y nextSibling</em> apuntan
+a nodos adyacente, es decir nodos que tienen el mismo padre (o que estan al mismo nivel (o nodos hermanos))</p>
+<ul>
+<li><strong>nextSiblig</strong> Devuelve el siguiente nodo hermano del nodo 
+  actual (cualquier nodo, ejm. nodos de texto o culaquier otra cosa).</li>
+<li><strong>previousSibling</strong> Es exactamente lo opuesto de nextSibling. 
+  Devuelve el nodo hermano anterior al nodo actual (cualquier nodo,ejm. 
+  nodos de texto o cualquier otra cosa).</li>
+<li><strong>nextElementSibling</strong> Siempre devuelve el siguiente elemente HTML
+  ignirando nodos de Texto.
+  (Solo elementos HTML)</li>
+<li><strong>previousElementSibling</strong> Devuelve el nodo hermano anterior al nodo actual 
+  (Solo elementos HTML)</li>
+<li><strong>childNodes</strong> Devuelve todos los nodos hijos sin excepción, incluyendo:
+  Elementos HTML (tipo 1) 
+  Nodos de texto / espacios (tipo 3)
+  Comentarios (tipo 8)</li>
+<li><strong>children</strong> Devuelve solo los hijos que son elementos HTML(Tipo 1),
+  ignorando textos y comentarios.</li>
+</ul>
+<h2 id="encontrando-elementos">ENCONTRANDO ELEMENTOS</h2>
+<p>Todos los nodos de elemento tiene un metodo <strong>getElementByTagname</strong> 
+que recoje todos los elementos con el nombre de la etiqueta dada y  que son
+ descendientes (hijos directos o indirectos) de ese nodo  y los devuelve 
+ como ub objeto similar a un array.</p>
+<pre><code class="language-js">     let documento = document getElementsByClassName('main_container')
+    console.log(documento) // Imprime todos los elementos que coicidan con la clase.
+    // En este caso existen 2 elementos que tiene la misma clase y ademas son nodos hermanos. Es decir, 
+    // son dos nodos que deben estar la mismo nivel para que puedan ser reconocidos por la funcion getElementsByClassName().
+    // Similar funcionan con otras funciones semejantes.   
+
+    // HTMLCollection(2) [div.main_container, div.main_container]
+    //0: div.main_container ← Hermano 1
+    //1: div.main_container ← Hermanos 2
+    //length: 2
+
+    //Ahora para poder ver los nodos hijos de estos elementos:
+    /* 1. En este caso como tenemos 2 elementos de la misma clase('main_container'), debemos seleccionar de que
+    elemento queremos ver sus nodos hijos. Ahora como  la funcion getElementsByClassName()
+    devuelve un array de los elementos coicidentes, tenemos que ocupar notacion de un array para acceder 
+    a cualquiera de estos dos elementos. Ejm. [0][1] ...
+    1. Utilizamos la palabra reservada children para acceder a sus hijos
+
+    */
+    let documento = document.getElementsByClassName('main_container')[0] // ← Paso 1, accedemos a primer elemento del array y,  
+    console.log(documento.children) // Seleccionamos todos sus hinjos
+    // → HTMLCollection(3) [div.child_container, a.EnlancaDirecto, a.EnlancaDirecto] ← Hijos nodos del Elemento 1 (Tiene 3 nodos, un div y 2 enlaces, cada una con su clase respectiva)
+    // 0: div.child_container |
+    // 1: a.EnlancaDirecto    |  ← Posicion en la que se encuentran los nodos hijos
+    // 2: a.EnlancaDirecto    |
+    // length: 3                 ← Numero de nodos hijos
+
+
+    // Si quisieramos acceder a un nodo hijo en especifico de un elemento, 
+    // se debe indicar la posicion del mismo
+    let documento = document.getElementsByClassName('main_container')[0]
+    console.log(documento.children[0]) // → esto accede a div.child_container
+
+</code></pre>
+<h2 id="cambiando-el-documento">CAMBIANDO EL DOCUMENTO</h2>
+<p>Los nodos tiene un metodo <strong>remove</strong> para removerlos de su padre actual.</p>
+<p>Para añadir un nodo podemos usar <strong>appendChild</strong> que lo coloca al final 
+de la lista de hijos</p>
+<p>O <strong>insertBefore</strong> que inserta el primer nodo dado como primer argumento antes
+del segundo nodo dado como segundo argumento .</p>
+<p>El motodo <strong>replaceChild</strong> se usa para remplazar un nodo hijo con otro.
+Toma como argumento dos nodos, un nodo nuevo y el nodo que se remplazara.
+<strong>replaceChild</strong> te permite cambiar un hijo por otro, pero debes llamarlo desde 
+el padre del nodo que quieres reemplazar.</p>
+<pre><code class="language-js">  padre.replaceChild(nodoNuevo, nodoAReemplazar);
+
+  // Esto me permite por ejemplo si ese nodo tiene 
+  // un id y quiesiera cambiar/actualizar a otro nodo pero que tenga el mismo id.
+</code></pre>
+<h2 id="creacion-de-nodos">CREACION DE NODOS</h2>
+<p><strong>Array.from()</strong> sirve para crear un array real a partir de algo que no es exactamente un array, pero que se parece… o que se puede recorrer.</p>
+<pre><code class="language-js">    // EJM.1
+    const divs = document.querySelectorAll(&quot;div&quot;)
+    console.log(Array.isArray(divs)) // false
+
+    const arrayDivs = Array.from(divs)
+    console.log(Array.isArray(arrayDivs)) // true
+    // Ahora puedes usar .map(), .filter(), .reduce() sin problema.
+
+    // EJM.2 CASO ESPECIAL (Este es un tipo de Array-like)
+    // El ejemplo funciona por que cumple con dos reglas claves
+    // 1. Tiene Propiedades numericas [0][1]...
+    // 2. Tiene una propiedad .lenght
+    // Esto es suficiente para que Array.from() lo trate como un array             
+
+    let arrayish = {0: &quot;uno&quot;, 1: &quot;dos&quot;, length: 2};
+    let array = Array.from(arrayish);
+    console.log(array.map(s =&gt; s.toUpperCase())); // → [&quot;UNO&quot;, &quot;DOS&quot;]
+    //⚠️ Pero ojo
+    //Si el objeto no tiene length, no funciona. Porque no sabe cuantos elementos leer.                
+
+    // 📌 Diferencia importante
+    { nombre: &quot;Alex&quot;, edad: 25 } //← Objeto Normal
+    // No es array-like.
+    // No tiene índices numéricos ni length.
+    // Por lo tanto:
+    Array.from({ nombre: &quot;Alex&quot; })
+    // []
+
+    // 🚀 Entonces… ¿cómo lo conviertes en array?
+    // Si quieres un array con los valores
+    // Object.values(data) → [&quot;Alex&quot;, 25, &quot;Ecuador&quot;]
+    //Si quieres un array con las claves
+    // Object.keys(data) → [&quot;nombre&quot;, &quot;edad&quot;, &quot;pais&quot;]
+    // Si quieres clave + valor (muy poderoso)
+    // Object.entries(data) → [ [&quot;nombre&quot;, &quot;Alex&quot;],[&quot;edad&quot;, 25],[&quot;pais&quot;, &quot;Ecuador&quot;] ]
+
+    // EJM.3 CONVERTIR STRING EN ARRAY
+    Array.from(&quot;Alex&quot;)
+    // → [&quot;A&quot;, &quot;l&quot;, &quot;e&quot;, &quot;x&quot;]
+
+</code></pre>
+<p>Para crear nodos puedes utilizar  el metodo <strong>document.createElement</strong> Es metodo 
+toma el nombre de la etiqueta y devuelve un nodo vacio del tipo dato.</p>
+<h2 id="atributos">ATRIBUTOS</h2>
+<p>Cuando estás trabajando con el DOM en JavaScript, algunos atributos 
+HTML se pueden leer directamente como propiedades del objeto del elemento
+  - ```js
+    // Propiedades regulares  <br />
+    elemento.id
+    elemento.className
+    elemento.href
+    elemento.src
+    elemento.value</p>
+<pre><code>// Pero si creas un atributo personalizado
+// (uno que tú inventas), el navegador no lo
+// conoce y por lo tanto no lo convierte en
+// propiedad del objeto
+
+&lt;div id="caja" color-favorito="azul"&gt;&lt;/div&gt;
+const caja = document.getElementById("caja");
+
+caja.color-favorito   // ❌ No existe como propiedad regular
+caja.id               // ✅ "caja" (propiedad regular, sí existe)
+```
+</code></pre>
+<ul>
+<li>HTML te permite  establecer cualquier atributo que desees en los nodos. 
+Para leer o cambiar atributos personalizados que no estan disponibles 
+como propiedades regualares del objeto, debes usar los metodos
+<strong>getAttribute</strong> y <strong>setAttribute</strong></li>
+<li><strong>setAttribute</strong> recibe dos parametros, el primero el nombre del atributo
+  y el segundo el valor de ese atributo</li>
+</ul>
+<pre><code class="language-js">  //Utilizando setAttribute
+  `&lt;img id=&quot;imagen&quot;&gt;`
+
+  let documento  = document.getElementById('imagen')
+  documento.setAttribute(&quot;src&quot;,&quot;./miFoto.png&quot;)
+  // Esto crea un atributo src junto con su respectivo valor, en la etiqueta img. 
+</code></pre>
+<p><strong>getAttribute</strong> recibe un parametro, es decir el noombre del atributp que desea leer.</p>
+<pre><code class="language-js">  let documento  = document.getElementById('imagen')
+  documento.setAttribute(&quot;src&quot;,&quot;./miFoto.png&quot;)
+  console.log(documento.getAttribute(&quot;src&quot;))
+  // ./miFoto.png ← Imprime el valor del atributo  
+  ``` 
+Se recomienda prefijar estos nombres de atributos con __data__ para evitar conflictos con otros atributos. Ejm. `data-recurso`
+
+Para acceder a la clase del elemento se usa __className__. 
+Esto tambien se prodia hacer con __getAttribute__. La diferencia 
+esta en que la primera es solo para clases y el segundo es para cualquier propiedad en general.
+
+__classList__ es una propiedad que te da acceso  a las clases de un elemento,
+pero en lugar de darte un string te da un objeto con metodos para agregar,
+quitar y manipular clases facilmente. Sus metodos son:
+</code></pre>
+<p>add()      → Agrega una o varias clases.
+remove()   → Elimina una o varias clases.
+toggle()   → Agrega la clase si no existe, la elimina si ya existe.
+replace()  → Reemplaza una clase por otra.
+contains() → Verifica si la clase existe.</p>
+<pre><code>
+
+## TIPOS DE COLECCIONES
+### COLECCIONES VIVAS
+Son aquellas que se actualizan automaticamente cuando el Dom cambia.
+Métodos que devuelven colección viva:
+</code></pre>
+<p>document.getElementsByClassName()
+document.getElementsByTagName()
+document.getElementsByName()
+element.getElementsByClassName()
+element.getElementsByTagName()</p>
+<pre><code>Y este caso especial:
+</code></pre>
+<p>element.childNodes → devuelve un NodeList vivo
+element.children → devuelve HTMLCollection viva
+```</p>
+<h3 id="colecciones-estaticas">COLECCIONES ESTATICAS</h3>
+<p>Son aquellas que no cambiar aunque el DOM cambie despues.
+Métodos que devuelven colección estatica:
+<code>document.querySelectorAll()</code>
+<code>element.querySelectorAll()</code></p>
+<h4 id="porque-importa">PORQUE IMPORTA?</h4>
+<p>Esto es util de entender porque: mientras estas iterando una
+coleccion viva, modificas el DOM, la coleccion cambia mientras la recorres y 
+eso altera el indice. </p>
+<h4 id="resumen-practico">RESUMEN PRACTICO</h4>
+<ul>
+<li>Colección viva + solo lectura → ✔️ seguro ( No genera efectos secundarios que alteren tu lógica.)</li>
+<li>Colección viva + mutación del mismo conjunto → ⚠️ riesgo</li>
+<li>Colección estática + mutación → ✔️ predecible ( El comportamiento no cambia inesperadamente mientras lo recorres.) </li>
+</ul>
+<p>Si vas a modificar la estructura que estas recorriendo trabaja con una copia estatica, si solo inspeccionas no hay drama. 
+  ```js
+    // EJM.1
+    // Esto modifica la clase de todos los elementos de la misma clase
+    // Pasan de verde a azul
+    let change =  document.querySelectorAll('.verde')
+    for(let x of change)
+    {
+    x.className = "Azul"
+    console.log(x)
+    }</p>
+<pre><code>//EMP.2
+// Esto no funciona porque getElementsByClassName devuelve
+// una coleccion viva y si cambias un elemento de la clase verde a azul
+// este se sale de la coleccion actual(porque ya cambio de clase) por ende,
+//  ya no formaria parte de esa coleccion y esto supondria que haya menos 
+// elementos en la coleccion y que los indices que estaban asociados a los elementos cambien
+// como consecuencia de que se eliminan elementos al cambiar de clase. 
+let change =  document.getElementsByClassName('verde')
+for(let x = 0; x &lt; change.length; x++)
+{
+    change[x].classList.replace('verde','azul')
+    console.log(change[x])
+
+}
+</code></pre>
+<p>```</p>
+<h2 id="posicionamiento-y-animacion">POSICIONAMIENTO Y ANIMACION</h2>
+<p>La propiedad de estilo <code>position</code> tiene diferentes valores:
+* <strong>static</strong>  el elemento se situa en su lugar normal del documento.
+* <strong>relative</strong> el elemento sigeu ocupando espacio en el documento 
+pero ahora las propiedades top y left se pueden usar para 
+moverlo con respecto a ese lugar
+* <strong>absolute</strong> El elemento se elimina del flujo normal del documento, 
+ya no ocupa espacio y puede superponerse con otros elementos, 
+se puede usar top y left</p>
+<h2 id="resumen">RESUMEN</h2>
+<p>El DOM es una estructura que representa el modelo del documento
+del navegador, y un programa en JavaScript puede modificarlo.
+El DOM esta organizado como un arbol,en el cual sus elementos
+estan ubicados jerarquicamente deacuerdo a la estructura del documento.
+Los elementos tiene propiedades como parentNode y childNodes 
+que se usan para nevegar a traves de alrbol.</p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../cap13jsE/" class="btn btn-neutral float-left" title="JAVASCRIPT - EL NAVEGADOR"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../cap15jsE/" class="btn btn-neutral float-right" title="MANEJO DE EVENTOS">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../cap13jsE/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../cap15jsE/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

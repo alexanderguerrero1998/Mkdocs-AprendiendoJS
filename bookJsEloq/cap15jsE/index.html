@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>MANEJO DE EVENTOS - APRENDIENDO JAVASCRIPT</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "MANEJO DE EVENTOS";
+        var mkdocs_page_input_path = "bookJsEloq\\cap15jsE.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> APRENDIENDO JAVASCRIPT
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption"><span class="caption-text">JAVASCRIPT ELOQUENT</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../cap5jsE/">FUNCIONES PRDEN SUPERIOR</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../cap6jsE/">OBJETOS</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../cap8jsE/">BUGS - ERRORES</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../cap9jsE/">EXPRESIONES REGULARES</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../cap10jsE/">MIDULOS</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../cap11jsE/">PROGRAMCION ASINCRONA</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../cap13jsE/">JAVASCRIPT - EL NAVEGADOR</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../cap14jsE/">DOM</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">MANEJO DE EVENTOS</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#controladores-de-eventos">CONTROLADORES DE EVENTOS</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#eventos-y-nodos-dom">EVENTOS Y NODOS DOM</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#objetos-en-eventos">OBJETOS EN EVENTOS</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#acciones-predeterminadas">ACCIONES PREDETERMINADAS</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#eventos-de-teclado">EVENTOS DE TECLADO</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#eventos-de-puntero">EVENTOS DE PUNTERO</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#clics-de-raton">CLICS DE RATON</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#movimiento-del-raton">MOVIMIENTO DEL RATON</a>
+    </li>
+        </ul>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../cap18jsE/">HTTP Y FORMULARIOS</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../cap20jsE/">NODE JS</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">APRENDIENDO JAVASCRIPT</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">JAVASCRIPT ELOQUENT</li>
+      <li class="breadcrumb-item active">MANEJO DE EVENTOS</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="javascrip-cap15">JAVASCRIP CAP15</h1>
+<h2 id="controladores-de-eventos">CONTROLADORES DE EVENTOS</h2>
+<p>Son funciones que permiten manejar eventos especificos. </p>
+<p><strong>addEventListener</strong> es una de estas funciones, es decir, es un metodo del objeto global windows 
+que permite registrar como primer argumento un <strong>evento</strong> y como segundo argumento una <strong>funcion</strong> que se llamara cada vez que ocurra ese evento. </p>
+<pre><code class="language-js">  &lt;p&gt;Haz clik para activar el manejador&lt;p&gt;    
+  &lt;script&gt;
+      window.addEventListener(&quot;click&quot;, ()=&gt; console.log(&quot;Llamaste ?&quot;))
+  &lt;/script&gt;
+  // → Llamaste ?
+</code></pre>
+<h2 id="eventos-y-nodos-dom">EVENTOS Y NODOS DOM</h2>
+<p>Cada controlador de eventos se registra en un contexto, en el caso anterior el metodo <strong>addEventListener</strong> se registro en el contexto de toda la ventana del navegador.</p>
+<pre><code class="language-js">  // Este ejemplo sirve para demostrar que los
+  // callback solo se llaman cuando el evento 
+  // ocurre dentro del contexto del objeto 
+  // donde fue registrado
+
+  // Es decir que si hago clic en otra parte de la pantalla
+  // que no sea el boton no ejecutara nada porque 
+  // el evento y su callback esta registrados en el
+  // contexto del botton, no en toda la pantalla como en el
+  // ejemplo anterior.
+
+  &lt;p&gt;No hay menejador aqui&lt;/p&gt;    
+
+  &lt;script&gt;
+      let button = document.querySelector(&quot;button&quot;)
+      button.addEventListener(&quot;click&quot;, ()=&gt; console.log(&quot;Boton Click&quot;))
+  &lt;/script&gt;
+</code></pre>
+<p>Existe una diferencia entre: <code>element.onclick</code> y <code>.addEventListener("click", ...)</code></p>
+<p>En la primera solo puede existir una funcion asignada, si asignas otra remplaza la anterior</p>
+<pre><code class="language-js">  element.onclick = () =&gt; console.log(&quot;Uno&quot;)
+  element.onclick = () =&gt; console.log(&quot;Dos&quot;)
+  // → Se se ejecuta solo &quot;Dos&quot;
+</code></pre>
+<p>En la segunda puedes agregar multiples funciones la mismo evento,
+permita mas control (captura, opciones, removeEventListener). 
+Y es la mas moderna y orofesional</p>
+<pre><code class="language-js">element.addEventListener(&quot;click&quot;, () =&gt; console.log(&quot;Uno&quot;));
+element.addEventListener(&quot;click&quot;, () =&gt; console.log(&quot;Dos&quot;));
+// Se ejecutan ambos
+</code></pre>
+<p>El metodo <strong>removeEventListener</strong> tiene los mismo argumetnos que <strong>addEventListener</strong> y permite remover un manejador. </p>
+<p>El mismo elemento que recibe <strong>addEventListener</strong> debe recibir <strong>removeEventListener</strong> para anular el manejador.</p>
+<h2 id="objetos-en-eventos">OBJETOS EN EVENTOS</h2>
+<p>Las funciones manejadores de eventos <em>(los callback)</em> reciben implicitamente un argumento: que es el objeto del evento <em>(Ejm. el objeto del evento "click")</em>.
+Este objeto contiene informacion del evento.</p>
+<pre><code class="language-js">  // Si queremos saber cual boton del mouse se presiono 
+  // podemos ver la propiedad button del objeto del evento
+&lt;button&gt;Haz clic&lt;/button&gt;
+&lt;script&gt;
+    let button = document.querySelector(&quot;button&quot;)
+    button.addEventListener(&quot;mousedown&quot;, evento =&gt;{
+        if (evento.button == 0)
+        console.log('Boton Izquierdo')
+        if(evento.button == 1)
+        console.log('Boton Centro')
+        if(evento.button == 2)
+        console.log('Boton Derecho')
+    })
+    // → Boton Izquuiero
+    // Boton Derecho
+    // Boton Centro
+&lt;/script&gt;
+</code></pre>
+<p>La informacion almacenada de un objeto de evento, difiere segun el 
+tipo de evento.</p>
+<h2 id="acciones-predeterminadas">ACCIONES PREDETERMINADAS</h2>
+<p>Cuando estamos en una pagina web normamente si vemos un link podemos clicar y nos llevara a donde este dirigido el enlace o presionar presionar un la tecla hacia abajo para que la pagina se desplace a abajo esto seria  lo normal o lo que el usuario esperaria.</p>
+<p>En JavaScrip se puede evitar este comportamiento "normal" utilizando  el metodo <code>preventDefault</code></p>
+<pre><code class="language-html">&lt;a href=&quot;www.google.com&quot;&gt;Haz clic&lt;/a&gt;
+</code></pre>
+<pre><code class="language-js">let enlace = document.querySelector(&quot;a&quot;)
+enlace.addEventListener(&quot;click&quot;, event =&gt; { console.log(&quot;Inhabilitado!&quot;)
+  event.preventDefault()
+})
+</code></pre>
+<p>Considera que esto es molesto para el usuario y que hay algunos eventos aparte de este que no funcionaran dependiendo el navegador.</p>
+<h2 id="eventos-de-teclado">EVENTOS DE TECLADO</h2>
+<p>Cuando presionas una tecla del teclado el navegador dispara un evento <code>keydown</code>. Cuando se suelta obtiene un evento <code>Keyup</code></p>
+<pre><code class="language-js">window.addEventListener(&quot;keydown&quot;, evento =&gt;{
+    if(evento.key == &quot;v&quot;)
+        document.body.style.background = &quot;blue&quot;
+} )
+
+window.addEventListener(&quot;keyup&quot;, evento =&gt; {
+    if(evento.key == &quot;v&quot;)
+        document.body.style.background = &quot;red&quot;
+})
+
+</code></pre>
+<p>Los eventos <strong>keydown</strong> y <strong>keyup</strong> que vimos anteriormente se activan cuando se presiona o suelta la tecla.</p>
+<p>La propiedad <code>key</code> del objeto del evento permite ver sobre que tecla se presiono y genero el evento.</p>
+<p>Las teclas modificadoras como <strong>SHIFT</strong>, <strong>CONTROL</strong>, <strong>ALT</strong> tienen las siguientes propiedades <code>shiftKey</code>, <code>ctrlKey</code>, <code>altKey</code>.</p>
+<h2 id="eventos-de-puntero">EVENTOS DE PUNTERO</h2>
+<p>Actualmente hay dos formas de señalar cosas en una pantalla: ratones y pantallas tactiles.</p>
+<h3 id="clics-de-raton">CLICS DE RATON</h3>
+<p>Presionar un boton del raton genera varios eventos. Los eventos <code>mousedown</code> y <code>mouseup</code> se activan cuando se presiona o suelta el  boton .</p>
+<p>Para obtener informacion precisa sobre el lugar donde ocurrio un evento de raton puede utilizar suspropiedades <code>clientX</code> - <code>clientY</code> - <code>pageX</code> - <code>pageY</code></p>
+<p>Una analogia para comprender estas diferencias es: Imagina que tu página es un edificio enorme. Y tu pantalla es solo la ventana por donde estás mirando.</p>
+<p><code>clientX</code> / <code>clientY</code></p>
+<p>Miden la posición del mouse dentro de la ventana que estás viendo. No importa cuánto hayas hecho scroll.
+Siempre empieza a contar desde la esquina visible.</p>
+<p>Si haces scroll 2000px hacia abajo y haces clic arriba de la pantalla:</p>
+<pre><code class="language-js">clientY = 10
+</code></pre>
+<p>Porque estás a 10px del borde visible.</p>
+<p><code>pageX</code> / <code>pageY</code></p>
+<p>Miden la posición respecto a todo el edificio completo (toda la página). Sí importa cuánto scroll hiciste.</p>
+<p>En el mismo caso:</p>
+<pre><code class="language-js">pageY = 2010
+</code></pre>
+<p>Porque estás 2000px abajo + 10px desde arriba visible.</p>
+<h3 id="movimiento-del-raton">MOVIMIENTO DEL RATON</h3>
+<p>Cada vez que el puntero del raton se mueve se produce un evento <code>mousemove</code> que sirve para rastrear la posicion del raton</p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../cap14jsE/" class="btn btn-neutral float-left" title="DOM"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../cap18jsE/" class="btn btn-neutral float-right" title="HTTP Y FORMULARIOS">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../cap14jsE/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../cap18jsE/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>EXPRESIONES REGULARES - APRENDIENDO JAVASCRIPT</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "EXPRESIONES REGULARES";
+        var mkdocs_page_input_path = "bookJsEloq\\cap9jsE.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> APRENDIENDO JAVASCRIPT
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption"><span class="caption-text">JAVASCRIPT ELOQUENT</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../cap5jsE/">FUNCIONES PRDEN SUPERIOR</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../cap6jsE/">OBJETOS</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../cap8jsE/">BUGS - ERRORES</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">EXPRESIONES REGULARES</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#expresiones-regulares">EXPRESIONES REGULARES</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#pruebas-de-coincidencia">PRUEBAS DE COINCIDENCIA</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#conjunto-de-caracteres">CONJUNTO DE CARACTERES</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#repetir-partes-de-un-patron">REPETIR PARTES DE UN PATRON</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#agrupacion-de-subexpresiones">AGRUPACION DE SUBEXPRESIONES</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#coincidencias-y-grupos">COINCIDENCIAS Y GRUPOS</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#patrones-de-eleccion">PATRONES DE ELECCION</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#el-metodo-replace">EL METODO REPLACE</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#resumen">RESUMEN</a>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../cap10jsE/">MIDULOS</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../cap11jsE/">PROGRAMCION ASINCRONA</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../cap13jsE/">JAVASCRIPT - EL NAVEGADOR</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../cap14jsE/">DOM</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../cap15jsE/">MANEJO DE EVENTOS</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../cap18jsE/">HTTP Y FORMULARIOS</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../cap20jsE/">NODE JS</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">APRENDIENDO JAVASCRIPT</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">JAVASCRIPT ELOQUENT</li>
+      <li class="breadcrumb-item active">EXPRESIONES REGULARES</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="javacript-cap9">JAVACRIPT CAP9</h1>
+<h2 id="expresiones-regulares">EXPRESIONES REGULARES</h2>
+<p>Son una forma describir patrones en datos de cadena/</p>
+<p>Una exprecion regular es un objeto y puede ser construido con el constructor <strong>RegExp()</strong> o escrito como un patron entre caracteres de barra diaginal <strong>(/)</strong>.</p>
+<pre><code class="language-js">let re1 =  new RegExp(&quot;abc&quot;)
+let re2 = /abc/
+</code></pre>
+<p>Algunos caracteres como el signo de <code>-</code> o <code>+</code> tiene significados especiales en expresiones regulares y deben ser presedidos de una barra invertida si se desea representar el propio caracter</p>
+<pre><code class="language-js">let aPlus = /A\+/
+</code></pre>
+<h2 id="pruebas-de-coincidencia">PRUEBAS DE COINCIDENCIA</h2>
+<p>Los objetos de patrones regulares tienen varios metodos. El mas simple es test. 
+Si le pasa una cadena devolvera un Booleano indicando si la cadena tiene coincidencia
+con el patron de la expresion.</p>
+<pre><code class="language-js">console.log(/abc/.test(&quot;abc&quot;))
+</code></pre>
+<p>Si abc aparece en cualquier parte de la cadena contra la cual estamos 
+probando (no solo al principio), test devolverá true.</p>
+<h2 id="conjunto-de-caracteres">CONJUNTO DE CARACTERES</h2>
+<p>En una expresion regular, poner un conjunto de caracteres entre corchetes hace que esa parte de la expresion coincida con cualquier con cualquiera de los caracteres entre los corchetes.</p>
+<pre><code class="language-js">console.log(/[0123456789]/.test(&quot;in 1992&quot;)) // → true
+console.log(/[0-9]/.test(&quot;in 1992&quot;)) // → true
+</code></pre>
+<p>Dentro de corchetes, un guion (-) entre dos caracteres se puede usarpara indicar un rango de caracteres.</p>
+<p>Varios grupos comunes tiene su propias abreviaturas incorporadas.</p>
+<pre><code>\d Cualquier caracter digito.
+\w un caracter alfanumerico.
+\s Cualquier carácter de espacio en blanco (espacio tabulación, nueva línea, y similares).
+\D Un caracter que no es un digito.
+\W Un caracter no alfa numerico.
+\S Un caracter que no es de espacio en blanco.
+. Cualquier caracter excepto nueva linea.
+</code></pre>
+<p>Podrias hacer coicidir un formato de fecha y hora <code>01-20-2003 15:20</code> con la siguiente expresion.</p>
+<pre><code class="language-js">let dateTime = /\d\d-\d\d-\d\d\d\d/
+console.log(dateTime.test(&quot;1-2-2023&quot;)) // → false
+console.log(dateTime.test(&quot;01-02-2023&quot;)) // → true
+</code></pre>
+<p>Para invertir un conjunto de caracteres, es decir, expresar que deseas hacer coincidir cualquier carácter excepto los que están en el conjunto, puedes escribir
+un carácter circunflejo <code>^</code></p>
+<pre><code class="language-js">let nonBinary = /[^01]/
+console.log(nonBinary.test(&quot;1100100010100110&quot;)) // → false
+console.log(nonBinary.test(&quot;0111010112101001&quot;)) // → true
+</code></pre>
+<p>Lo que el circunflejo pregunta "hay algun valor que no coicida con esto, este caso 0 y 1" 
+si se comple devuelve un false.</p>
+<h2 id="repetir-partes-de-un-patron">REPETIR PARTES DE UN PATRON</h2>
+<p>Que tal si queremos hacer coincidir una secuencia de uno o mas diguitos...</p>
+<p>Cuando se coloca el signo <code>+</code> en una expresion regular significa que el elemento puede repetirse mas de una vez. Asi ./\d/ hace conicidir uno o mas caracteres de digitos.</p>
+<pre><code class="language-js">console.log(/'\d+'/.test(&quot;'123'&quot;))  // → true
+console.log(/'\d+'/.test(&quot;''&quot;))  // → false
+console.log(/'\d*'/.test(&quot;'123'&quot;)) // → true
+console.log(/'\d*'/.test(&quot;''&quot;)) // → true
+</code></pre>
+<p>El <code>*</code> permita que el patron coicida cero veces. Algo con un asterisco despues nunca
+impide que el patron coincida.</p>
+<p>Un signo de interogacion <code>?</code> permite que el caracter anterior sea opcional, lo que significa que 
+puede ocurrir cero veces o una vez.</p>
+<pre><code class="language-js">let neighbor = /neighbou?r/;
+console.log(neighbor.test(&quot;neighbour&quot;)) // → true
+console.log(neighbor.test(&quot;neighbor&quot;)) // → true
+</code></pre>
+<p>Para indica que un patron debe ocurrir un numero preciso de veces, utiliza llaves. Colocar <code>{4}</code> despues de un elemento, requiere que ocurra exactamente cuatro veces. </p>
+<p>Tambien es posible indicar un rago de esta manera <code>{2,4}</code> significa que el elemento debe ocurrir almenos dos veces y maximo cuatro</p>
+<pre><code class="language-js">let dateTime = /\d{1,2}-\d{1,2}-\d{4}/
+console.log(dateTime.test(&quot;1-2-2001&quot;)) // → true
+console.log(dateTime.test(&quot;01-02-2001&quot;) // → true
+</code></pre>
+<p>Tambien puedes especificar rango abierto omitiendo el numero despues de la coma. Asi, <code>{5,}</code> significa cinco o mas veces.</p>
+<h2 id="agrupacion-de-subexpresiones">AGRUPACION DE SUBEXPRESIONES</h2>
+<p>Para usar un operador como <code>*</code> o <code>+</code> en mas de un elemento a la vez, debes utilizar parentisis. Una parte que este dentro de un parentsis cuenta como un solo elemento.</p>
+<pre><code class="language-js">let cartoonCrying = /boo+(hoo+)+/i;
+console.log(cartoonCrying.test(&quot;Boohoooohoohooo&quot;)); // → true
+</code></pre>
+<p>El primer y segundo caracter <code>+</code> se aplicar a <em>boo</em> y <em>hoo</em>.
+El tercer <code>+</code> se aplica a todo el grupo (hoo+) haciendo coicidir una o mas secuencias como esta.
+La <code>i</code> al final indica que todos los valores se concideran en minusculas</p>
+<h2 id="coincidencias-y-grupos">COINCIDENCIAS Y GRUPOS</h2>
+<p>El metodo <strong>test</strong> es la forma mas simple de hacer coincidir una expresion regular. Solo te indica si hubo coicidencia y nada mas.</p>
+<p>Las expreciones regulares tambien cuentan con el metodo <strong>exec</strong> que devuelve un <strong>null</strong> si no encuentra coincidencia y devolvera un objeto con la informacion
+sobre la coicidencia en caso contrario.</p>
+<pre><code class="language-js">let coincidencia = /\d+/.exec(&quot;uno dos 100&quot;)
+console.log(coincidencia); // → [ '100', index: 8, input: uno dos 100', groups: undefined ]
+</code></pre>
+<p>El <strong>objeto</strong> devuelto por exec tiene un propiedad index que nos dice donde en 
+la cadena comenzo la coicidencia.</p>
+<h2 id="patrones-de-eleccion">PATRONES DE ELECCION</h2>
+<p>Para saber si un texto tiene no solo letras sino palabras podriamos utilizar el caracter de barra vertical (|) denota una eleccion entre el patron a su izquierda o patron asu derecha.</p>
+<pre><code class="language-js">let animalCount = /\d+ (pollo|vaca|toro)s?/
+console.log(animalCount.test(&quot;12 vacas&quot;)) // → true
+console.log(animalCount.test(&quot;1 toro&quot;)) // → true
+</code></pre>
+<h2 id="el-metodo-replace">EL METODO REPLACE</h2>
+<p>El primer argumento tambien puede ser una expresion regular, en cuyo caso se 
+remplaza la primera coincidencia de la expresion regular</p>
+<pre><code class="language-js">console.log(&quot;Borobudur&quot;.replace(/[ou]/, &quot;a&quot;)) // → Barobudur
+</code></pre>
+<p>Cuando se agrega una opcion <code>g</code> (para global) <strong>despues</strong> de la expresion regular, todas las coincidencias en la cadena seran resmplazadas, no solo la primera.</p>
+<pre><code class="language-js">console.log(&quot;Borobudur&quot;.replace(/[ou]/g, &quot;a&quot;))// → Barabadar
+</code></pre>
+<p>El verdadero poder de usar expresiones regulares con replace proviene del
+hecho de que podemos hacer referencia a grupos coincidentes en la cadena de
+reemplazo</p>
+<pre><code class="language-js">console.log(&quot;Liskov, Barbara\nMcCarthy, John\nMilner, Robin&quot;.replace(/(\p{L}+), (\p{L}+)/gu, &quot;$2 $1&quot;));
+// → Barbara Liskov
+// John McCarthy
+// Robin Milner
+</code></pre>
+<p>Los <code>$1</code> y <code>$2</code> en la cadena de reemplazo se refieren a los grupos entre paréntesis en el patrón.  <code>$1</code> es reemplazado por el texto que coincidió con el primer grupo,<code>$2</code> por el segundo, y así sucesivamente, hasta <code>$9</code>. Toda la coincidencia se puede referenciar con <code>$&amp;</code>.</p>
+<h2 id="resumen">RESUMEN</h2>
+<pre><code>/abc/ Una secuencia de caracteres.
+/[abc]/ Cualquier carácter de un conjunto de caracteres.
+/[^abc]/ Cualquier carácter que no esté en un conjunto de caracteres.
+/[0-9]/ Cualquier carácter en un rango de caracteres.
+/x+/ Una o más ocurrencias del patrón x.
+/x+?/ Una o más ocurrencias, perezoso.
+/x*/ Cero o más ocurrencias.
+/x?/ Cero o una ocurrencia.
+/x{2,4}/ Dos a cuatro ocurrencias.
+/(abc)/ Un grupo.
+/a|b|c/ Cualquiera de varias combinaciones de patrones.
+/\d/ Cualquier carácter de dígito.
+/\w/ Un carácter alfanumérico (“carácter de palabra”).
+/\s/ Cualquier carácter de espacio en blanco.
+/./ Cualquier carácter excepto saltos de línea.
+/\p{L}/u Cualquier carácter de letra.
+/^/ Inicio de entrada.
+/$/ Fin de entrada.
+/(?=a)/ Una prueba de vistazo hacia adelante.
+</code></pre>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../cap8jsE/" class="btn btn-neutral float-left" title="BUGS - ERRORES"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../cap10jsE/" class="btn btn-neutral float-right" title="MIDULOS">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../cap8jsE/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../cap10jsE/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>HTTP Y FORMULARIOS - APRENDIENDO JAVASCRIPT</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "HTTP Y FORMULARIOS";
+        var mkdocs_page_input_path = "bookJsEloq\\cap18jsE.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> APRENDIENDO JAVASCRIPT
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption"><span class="caption-text">JAVASCRIPT ELOQUENT</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../cap5jsE/">FUNCIONES PRDEN SUPERIOR</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../cap6jsE/">OBJETOS</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../cap8jsE/">BUGS - ERRORES</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../cap9jsE/">EXPRESIONES REGULARES</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../cap10jsE/">MIDULOS</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../cap11jsE/">PROGRAMCION ASINCRONA</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../cap13jsE/">JAVASCRIPT - EL NAVEGADOR</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../cap14jsE/">DOM</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../cap15jsE/">MANEJO DE EVENTOS</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">HTTP Y FORMULARIOS</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#el-protocolo">EL PROTOCOLO</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#navegadores-y-http">NAVEGADORES Y HTTP</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#fectch">FECTCH</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#aislamiento-http">AISLAMIENTO HTTP</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#areciando-http">ARECIANDO HTTP</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#campos-de-formulario">CAMPOS DE FORMULARIO</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#campos-dehabilitados">CAMPOS DEHABILITADOS</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#el-formulario-en-su-totalidad">EL FORMULARIO EN SU TOTALIDAD</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#campos-de-texto">CAMPOS DE TEXTO</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#campos-de-seleccion">CAMPOS DE SELECCION</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#campos-de-archivo">CAMPOS DE ARCHIVO</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#almacenando-datos-del-lado-del-cliente">ALMACENANDO DATOS DEL LADO DEL CLIENTE</a>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../cap20jsE/">NODE JS</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">APRENDIENDO JAVASCRIPT</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">JAVASCRIPT ELOQUENT</li>
+      <li class="breadcrumb-item active">HTTP Y FORMULARIOS</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="javascript">JAVASCRIPT</h1>
+<p>El Protocolo de Trasnferenecia de Hipertecto es el mecanismo por el cual  se solicita y proporciona datos a la World Wide Web.</p>
+<h2 id="el-protocolo">EL PROTOCOLO</h2>
+<p>Cuando se envia una URL el navegador primero busca la direccion del servidor asociado con la URL e intenta abrir una conexion TCP con el puerto 80. Si el servidor existe y acepta la conexion se envia algo como esto </p>
+<pre><code class="language-js">GET /18_http.html HTTP/1.1
+Host: eloquentjavascript.net
+User-Agent: Nombre de tu navegador
+</code></pre>
+<p>Luego el servidor responde atravez de esa misma conexion</p>
+<pre><code class="language-js">HTTP/1.1 200 OK
+Content-Length: 87320
+Content-Type: text/html
+Last-Modified: Vie, 13 Oct 2023 10:05:41 GMT
+
+&lt;!doctype html&gt;
+... el resto del documento
+</code></pre>
+<p>El navegador toma la parte de la respuesta de la linea en blanco, su cuerpo y lo muestra como documento HTML.</p>
+<p>Explicacion de la solicitud</p>
+<ul>
+<li>
+<p>La primera palabra es el metodo de la solicitud. GET significa que queremos obtener un recurso especificado.</p>
+</li>
+<li>
+<p>La parte despues del nombre del metodo es la ruta del recurso que se solicita.</p>
+</li>
+<li>
+<p>Despues de la ruta del recurso se menciona HTTP/1.1 para indicar la version del protocolo.</p>
+</li>
+<li>
+<p>Luego viene la cabecera  que son lineas en forma <code>nombre</code> : <code>valor</code> que se especifican informacion adicional de la solicitud</p>
+</li>
+</ul>
+<p>Explicacion de la respuesta</p>
+<ul>
+<li>
+<p>La respuesta del servido comenzara con una version del protocolo, seguida del codigo de estado de la respuesta</p>
+</li>
+<li>
+<p>Los codigos de estado que comienzan con el numero 2 indican que la solicitu tuvo exito. Ejm. el codigo 200. </p>
+</li>
+<li>
+<p>Los codigos que comienzan con 4 significa que hubo problemas con la solicitud. Ejm el 404 que significa que el recurso no se pudo encontrar. </p>
+</li>
+<li>
+<p>Los que comienzan con 5 indican que ocurrio un error en el servidor y la solicitud no es la responsable.</p>
+</li>
+<li>
+<p>Luego viene la cabecera  que son lineas en forma <code>nombre</code> : <code>valor</code> que se especifican informacion adicional de la respuesta</p>
+</li>
+</ul>
+<p>Despues de las cabecerasm tanto las solucitudes como las respuestas pueden incluir una linea en blanco seguida del cuerpo que contiene el documento real que se envia.</p>
+<h2 id="navegadores-y-http">NAVEGADORES Y HTTP</h2>
+<pre><code class="language-html">&lt;form method=&quot;GET&quot; action=&quot;example/message.html&quot;&gt;
+    &lt;p&gt;Nombre: &lt;input type=&quot;text&quot; name=&quot;name&quot;&gt;&lt;/p&gt;
+    &lt;p&gt;Mensaje:&lt;br&gt;&lt;textarea name=&quot;message&quot;&gt;&lt;/textarea&gt;&lt;/p&gt;
+    &lt;p&gt;&lt;button type=&quot;submit&quot;&gt;Enviar&lt;/button&gt;&lt;/p&gt;
+&lt;/form&gt;
+</code></pre>
+<p>Enviar un formulario significa que el contenido de sus campos se empaquetan en una solicitud HTTP. </p>
+<pre><code class="language-js">GET /example/message.html?name=Jean&amp;message=Yes%3F HTTP/1.1
+</code></pre>
+<p>El signo de <code>?</code> indica el <strong>final</strong> de la parte de la <strong>ruta</strong> de la URL y el <strong>inicio</strong> de la <strong>consulta</strong>. Le siguen pares de nombres y valores correspondientes al atributo <code>name</code> en los elementos del campo del formulario y al contenido de esos elementos respectivamente. Un carácter ampersand (&amp;) se utiliza para separar los pares</p>
+<p>En el ejemplo anterior si cambiamos al metodo <code>POST</code>, este colocara la cadena de <strong>consulta</strong> en el cuerpo de la solicitud, en lugar de agregarla a la URL.</p>
+<pre><code class="language-js">POST /example/message.html HTTP/1.1
+Content-length: 24
+Content-type: application/x-www-form-urlencoded
+name=Jean&amp;message=Yes%3F
+</code></pre>
+<h2 id="fectch">FECTCH</h2>
+<p>La interfaz a travez de la cual JavaScript del navegador puede hacer solicitudes HTTP se llama <code>fetch</code></p>
+<pre><code class="language-js">fetch(&quot;ejemplo/datos.txt&quot;).then(response =&gt; {
+console.log(response.status);
+// → 200
+console.log(response.headers.get(&quot;Content-Type&quot;));
+// → text/plain
+});
+</code></pre>
+<p>Cuando se llama a la fecth esta devuelve una <strong>promesa</strong>. Esa promesa, cuando se resuelve, entrega un objeto de tipo <strong>Response</strong> que contiene informacion sobre la respuesta del servidor, como su codigo de estado y sus encabezados. Los encabezados estan envueltos en un objeto similar a un <strong>Map</strong> como insensibles a mayusculas y minusculas.</p>
+<p><code>fetch</code> devuelve: Una <code>Promesa</code> → que resuelve en un objeto <code>Response</code> → que contiene:</p>
+<ul>
+<li><code>status</code> ← Esto permite conocer los estados (codigos) del servidor (Ejm 200,400), es decir sus respuestas. 
+Las Promesas tienen otros estados que no son numericos (Mientras espera → <em>pending</em>, Si termina bien → <em>fulfilled</em>, Si falla la red → rejected). No confundir estados de promesas con las del servidor.</li>
+<li><code>ok</code></li>
+<li><code>headers</code></li>
+<li><code>json()</code></li>
+<li><code>text()</code></li>
+</ul>
+<p>Concidera que la promesa que devuelve fetch se resuelve con exito incluso si el servidor responde con un codigo de error. La promesa puede ser rechazada su hay un error de response o si el  servidor no se puede encontrar.</p>
+<p><strong>El primer argumento</strong> de fecth es la URL que se debe solicitar. Cuando esa  URL no comienza con un nombre de protocolo (como http) se trata como <strong>relativa</strong>, es decir se interpreta en relacion con el documento actual. </p>
+<p><strong>El segundo algumento</strong> es un objetos de opciones donde puedes configurar cosas como el método (method), el cuerpo (body), los encabezados (headers), entre otros.</p>
+<p>El segundo argumento es opcional, si no lo pasas, fetch hace una solicitud GET por defecto.</p>
+<p>Para acceder al contenido de una respuesta puedes usar el metodo <code>text</code></p>
+<pre><code class="language-js">fetch(&quot;ejemplo/datos.txt&quot;)
+.then(resp =&gt; resp.text())
+.then(text =&gt; console.log(text));
+// → Este es el contenido de datos.txt
+</code></pre>
+<p>Un metodo similar llamado <code>json</code> devuelve una promesa cuyo valor es el  cuerpo del JSON, o se puede rechazar si no es un JSON valido.</p>
+<p>Por defecto, fetch utiliza el metodo GET para la solicitud y no incluye un cuerpo de solicitud. Pero puedes agregarlo y para ello puedes incluir una opcion <strong>body</strong>. Para establecer cabeceras, esta la opcion <strong>headers</strong>. Por ejemplo, esta solicitud incluye
+una cabecera Range, que indica al servidor que devuelva solo una parte de un
+documento.</p>
+<pre><code class="language-js">fetch(&quot;ejemplo/datos.txt&quot;, {headers: {Range: &quot;bytes=8-19&quot;}})
+.then(resp =&gt; resp.text())
+.then(console.log);
+// → el contenido
+
+</code></pre>
+<p>Añadir tus propias cabeceras es muchas veces útil para incluir cosas como información de autenticación o para indicar al servidor
+en qué formato de archivo te gustaría recibir.</p>
+<h2 id="aislamiento-http">AISLAMIENTO HTTP</h2>
+<p>Hacer solicitudes HTTP desde scripts en páginas web genera riesgos de seguridad, porque el dueño del sitio podría usar tu navegador para enviar peticiones a otros dominios sin tu consentimiento (por ejemplo, a un banco usando tu sesión activa).</p>
+<p>Para evitar esto, los navegadores aplican una política de seguridad que bloquea las solicitudes entre distintos dominios. Es decir, un script de un sitio no puede hacer peticiones libremente a otro dominio.</p>
+<p>Sin embargo, cuando el acceso entre dominios es legítimo, los servidores pueden permitirlo enviando una cabecera especial en la respuesta, como:</p>
+<p><code>Access-Control-Allow-Origin: *</code></p>
+<p>Esto indica al navegador que sí se permite el acceso desde otros dominios (en este caso, desde cualquiera).</p>
+<h2 id="areciando-http">ARECIANDO HTTP</h2>
+<p>Cuando un programa en el navegador (cliente) necesita comunicarse con un servidor, existen distintas formas de organizar esa comunicación.</p>
+<p>Una forma común es el modelo de llamadas a procedimientos remotos (RPC). Funciona como si llamaras a una función normal, pero en realidad se ejecuta en el servidor. El navegador envía el nombre de la función y sus argumentos, y el servidor responde con el resultado. En este modelo, HTTP es solo el “mensajero”, y suele esconderse detrás de una capa de abstracción.</p>
+<p>El otro enfoque se basa en recursos y métodos HTTP. En vez de llamar a algo como <code>addUser</code>, se usa una solicitud como <code>PUT /usuarios/larry</code>. Los datos se envían en formato JSON dentro del cuerpo de la petición. Para obtener información, se usa <code>GET /usuarios/larry</code>, y el servidor devuelve el documento que representa ese recurso.</p>
+<p>Este segundo enfoque aprovecha mejor las características propias de HTTP, como la caché, y usa principios bien diseñados del protocolo para estructurar la API del servidor de forma más sólida y escalable.</p>
+<h2 id="campos-de-formulario">CAMPOS DE FORMULARIO</h2>
+<p>Los formularios nacieron en la Web antes de JavaScript, con la idea de enviar datos del usuario al servidor mediante una solicitud HTTP, normalmente cargando una nueva página.</p>
+<p>Pero hoy los formularios forman parte del DOM como cualquier otro elemento. Eso significa que JavaScript puede leer, modificar y controlar sus campos gracias a sus propiedades y eventos especiales. Así, los formularios ya no solo envían datos: también pueden convertirse en piezas clave dentro de una aplicación dinámica en el navegador.</p>
+<p>Un formulario se define con la etiqueta <code>&lt;form&gt;</code> y puede contener distintos tipos de campos: casillas, menús desplegables, campos de texto, entre otros. Muchos de estos campos usan la etiqueta <code>&lt;input&gt;</code>, y el atributo type determina el tipo de campo</p>
+<p>Existen varios tipos comunes de <input>:</p>
+<ul>
+<li>
+<p><code>text:</code> campo de texto de una sola línea.</p>
+</li>
+<li>
+<p><code>password:</code> igual que text, pero oculta lo que se escribe.</p>
+</li>
+<li>
+<p><code>checkbox:</code> interruptor de encendido/apagado.</p>
+</li>
+<li>
+<p><code>color:</code> selector de color.</p>
+</li>
+<li>
+<p><code>date:</code> selector de fecha.</p>
+</li>
+<li>
+<p><code>radio:</code> opción dentro de un grupo de selección múltiple.</p>
+</li>
+<li>
+<p><code>file</code>: permite elegir un archivo desde la computadora.</p>
+</li>
+</ul>
+<p>Importante: los campos no tienen que estar dentro de una etiqueta <code>&lt;form&gt;</code>. Pueden colocarse en cualquier parte del HTML.</p>
+<p>Eso sí, solo un <code>&lt;form&gt;</code> completo puede enviarse al servidor. Pero cuando trabajamos con JavaScript moderno, muchas veces no queremos enviar el formulario de forma tradicional, sino capturar y manejar los datos directamente desde el navegador.</p>
+<h2 id="campos-dehabilitados">CAMPOS DEHABILITADOS</h2>
+<p>Todos los campos de formulario pueden ser deshabilitados a través de su atributo <code>disabled</code>. Es un atributo que se puede especificar sin valor; el simple hecho
+de que esté presente deshabilita el elemento</p>
+<pre><code class="language-html">&lt;button disabled&gt;Estoy fuera&lt;/button&gt;
+</code></pre>
+<h2 id="el-formulario-en-su-totalidad">EL FORMULARIO EN SU TOTALIDAD</h2>
+<p>Cuando un campo está dentro de un <code>&lt;form&gt;</code>, su elemento DOM tiene una propiedad form que apunta al formulario al que pertenece.</p>
+<p>Por su parte, el elemento <code>&lt;form&gt;</code> tiene una propiedad llamada <code>elements</code>, que contiene una colección con todos los campos que están dentro del formulario.</p>
+<p>El atributo name de cada campo es clave porque:</p>
+<ul>
+<li>
+<p>Define cómo se identificará su valor cuando se envíe el formulario.</p>
+</li>
+<li>
+<p>Permite acceder a ese campo desde form.elements usando su nombre.</p>
+</li>
+</ul>
+<p>La colección <code>elements</code> funciona de dos maneras:</p>
+<ul>
+<li>
+<p>Como un array (acceso por índice numérico).</p>
+</li>
+<li>
+<p>Como un mapa (acceso por nombre del campo).</p>
+</li>
+</ul>
+<p>En otras palabras, el <code>name</code> no es solo decorativo: es la etiqueta operativa que conecta el frontend con el procesamiento de datos.</p>
+<h2 id="campos-de-texto">CAMPOS DE TEXTO</h2>
+<p>Todos tienen una propiedad <code>value</code>, que contiene el texto actual del campo como una cadena. Si cambias esa propiedad desde JavaScript, cambias directamente el contenido visible del campo.</p>
+<h2 id="campos-de-seleccion">CAMPOS DE SELECCION</h2>
+<p>Los campos <code>&lt;select&gt;</code> permiten elegir opciones, igual que los botones de radio. La diferencia es que con radio tú controlas más el diseño, mientras que el aspecto de <code>&lt;select&gt;</code> lo define el navegador.</p>
+<p>Un <code>&lt;select&gt;</code> normal permite elegir una sola opción y suele mostrarse como lista desplegable.</p>
+<p>Si se añade el atributo multiple, el usuario puede seleccionar varias opciones. En este caso, el campo muestra varias opciones al mismo tiempo, más parecido a un conjunto de casillas de verificación.</p>
+<p>Cada <code>&lt;option&gt;</code> tiene un valor:</p>
+<ul>
+<li>
+<p>Puede definirse con el atributo <code>value</code>.</p>
+</li>
+<li>
+<p>Si no se define, el texto visible dentro de la opción se usa como valor.</p>
+</li>
+</ul>
+<p>La propiedad <code>value</code> del <code>&lt;select&gt;</code> devuelve la opción seleccionada.
+Pero en un <code>&lt;select multiple&gt;</code>, esta propiedad solo devuelve uno de los valores seleccionados, por lo que no es muy útil por sí sola.</p>
+<p>Para trabajar correctamente con múltiples selecciones:</p>
+<ul>
+<li>
+<p>Se usa la propiedad options, que es como un array con todas las opciones.</p>
+</li>
+<li>
+<p>Cada opción tiene una propiedad selected, que indica si está seleccionada.</p>
+</li>
+<li>
+<p>Esta propiedad también puede modificarse desde JavaScript para seleccionar o deseleccionar opciones programáticamente.</p>
+</li>
+</ul>
+<p>En resumen: <code>&lt;select&gt;</code> es una herramienta flexible, y con <code>multiple</code> se convierte en un control de selección masiva totalmente manejable desde código.</p>
+<h2 id="campos-de-archivo">CAMPOS DE ARCHIVO</h2>
+<p>Los campos <code>&lt;input type="file"&gt;</code> fueron creados para subir archivos al servidor mediante formularios. Pero en navegadores modernos también permiten leer esos archivos desde JavaScript.</p>
+<p>Un script no puede leer archivos del usuario por sí solo. Solo cuando el usuario selecciona manualmente un archivo, el navegador permite que el código lo lea.</p>
+<pre><code class="language-html">&lt;input type=&quot;file&quot;&gt;
+</code></pre>
+<pre><code class="language-js">let input = document.querySelector(&quot;input&quot;);
+input.addEventListener(&quot;change&quot;, () =&gt; {
+    if (input.files.length &gt; 0) {
+    let file = input.files[0];
+    console.log(&quot;Has elegido&quot;, file.name);
+    if (file.type) console.log(&quot;Tiene tipo&quot;, file.type);
+    }
+});
+// Has elegido HOJA DE VIDA.pdf
+</code></pre>
+<p>La propiedad <code>files</code> del campo contiene los archivos seleccionados. Es una colección similar a un array (no es un array real). Inicialmente esta vacio. </p>
+<p>Aparte de <code>file</code> tambien existe un atributo <code>multiple</code> que permite seleccionar varios archivos al mismo tiempo</p>
+<p>Los objetos en <code>files</code> tienen propiedades como <code>name</code> (nombre del archivo) <code>size</code> (tamaño del archivo en bytes) y <code>type</code>  (el tipo de medio del archivo, como text/plain o image/jpeg)</p>
+<p>En otras palabras <code>files</code> es la propiedad del <code>&lt;input type="file"&gt;</code>. Es una colección (parecida a un array) llamada <code>FileList</code>. Dentro de <code>files</code> están los objetos individuales de tipo <code>File</code>.</p>
+<p>Lo que no tienen es una propiedad que permita acceder al contenido del archivo. Acceder a eso es un poco más complicado. Para leerlo se usa <code>FileReader</code>, porque la lectura puede tardar y se maneja de forma <strong>asíncrona</strong> para no bloquear la interfaz.</p>
+<pre><code class="language-html">&lt;input type=&quot;file&quot; multiple&gt;
+</code></pre>
+<pre><code class="language-js">let input = document.querySelector(&quot;input&quot;);
+input.addEventListener(&quot;change&quot;, () =&gt; {
+    for (let file of Array.from(input.files)) {
+    let reader = new FileReader();
+    reader.addEventListener(&quot;load&quot;, () =&gt; {
+        console.log(&quot;El archivo&quot;, file.name, &quot;comienza con&quot;,
+        reader.result.slice(0, 20));
+    });
+    reader.readAsText(file);
+    }
+});
+</code></pre>
+<p>La lectura de un archivo se realiza creando un objeto <code>FileReader</code>, registrando un controlador de eventos <code>load</code> para el y llamando a su  metodo <code>readAsText</code> dandole el archivo que queremos leer.Cuando termina, el contenido está en <code>reader.result</code>. También existe el evento "error" si algo falla, y el error queda en <code>reader.error</code>.</p>
+<h2 id="almacenando-datos-del-lado-del-cliente">ALMACENANDO DATOS DEL LADO DEL CLIENTE</h2>
+<p>El objeto <code>localStorage</code> se puede utilizar para almacenar datos de una manera que sobrevivan a las recargas de pagina. Te permite guardar valores de cadena bajo nombres.</p>
+<pre><code class="language-js">localStorage.setItem(&quot;nombre_animal&quot;,&quot;Loro&quot;)
+console.log(localStorage.getItem(&quot;nombre_animal&quot;))
+</code></pre>
+<p>Un valor en <code>localStorage</code> permanecen hasta que se sobrescribe, se elimina con <code>removeItem</code> o el usuario elimina sus datos locales.</p>
+<p>Existe ptrp objeto similar al <code>localStorage</code>, llamado <code>sessionStorage</code>. La diferencia es que este ultimo seolvida al final de cada sesion, es decir cada vez que el navegador se cierra.</p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../cap15jsE/" class="btn btn-neutral float-left" title="MANEJO DE EVENTOS"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../cap20jsE/" class="btn btn-neutral float-right" title="NODE JS">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../cap15jsE/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../cap20jsE/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

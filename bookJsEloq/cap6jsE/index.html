@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>OBJETOS - APRENDIENDO JAVASCRIPT</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "OBJETOS";
+        var mkdocs_page_input_path = "bookJsEloq\\cap6jsE.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> APRENDIENDO JAVASCRIPT
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption"><span class="caption-text">JAVASCRIPT ELOQUENT</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../cap5jsE/">FUNCIONES PRDEN SUPERIOR</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">OBJETOS</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#tipos-de-datos-abstractos">TIPOS DE DATOS ABSTRACTOS</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#metodos-de-objetos">METODOS DE OBJETOS</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#prototipos">PROTOTIPOS</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#clases">CLASES</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#propiedades-privadas">PROPIEDADES PRIVADAS</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#mapas">MAPAS</a>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../cap8jsE/">BUGS - ERRORES</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../cap9jsE/">EXPRESIONES REGULARES</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../cap10jsE/">MIDULOS</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../cap11jsE/">PROGRAMCION ASINCRONA</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../cap13jsE/">JAVASCRIPT - EL NAVEGADOR</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../cap14jsE/">DOM</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../cap15jsE/">MANEJO DE EVENTOS</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../cap18jsE/">HTTP Y FORMULARIOS</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../cap20jsE/">NODE JS</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">APRENDIENDO JAVASCRIPT</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">JAVASCRIPT ELOQUENT</li>
+      <li class="breadcrumb-item active">OBJETOS</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="javascript-cap6">JAVASCRIPT CAP6</h1>
+<h2 id="tipos-de-datos-abstractos">TIPOS DE DATOS ABSTRACTOS</h2>
+<p>Cada tipo de datos abstracto tiene una interfaz, que es una coleccion de
+operaciones que el codigo externo puede utilizar en el.</p>
+<p>Un tipo de dato abstracto, o clase de objeto es un subprograma que puede contener 
+codigo arbitrariamente complicado, pero que exponer un conjunto de metodos y propiedades
+que se supone que las personas que trabajan con el deben usar.</p>
+<h2 id="metodos-de-objetos">METODOS DE OBJETOS</h2>
+<p>Un metodo es una propiedad que tienen como valor una funcion.
+<code>let persona = {</code><br><code>nombre : "Alex",</code><br><code>saludar : function() {console.log("Hola!")</code><br><code>}};</code>
+<strong>nombre</strong> → propiedad con valor de texto
+<strong>saludar</strong> → propiedad con <strong>valor de función</strong> → cuando la llamas</p>
+<p>Cuando una funcion es asignada como propiedad de un objeto 
+— y esta es invocada por el objeto que la contiene — la vinculacion 
+<em>this</em> definida en su cuerpo apunta directamente al objeto que la llamo.<br></p>
+<pre><code class="language-js">function speak (line) {
+  console.log(`El conejo '${this.type }' dice '${line}'`)
+}
+
+let conejoBlanco= { type:&quot;blanco&quot;, speak }; //← (Aqui esta la funcion speak definida como &quot;Property Shorthand&quot; es lo mismo que, speak:speak)
+
+conejoBlanco.speak(&quot;Oh, mi pelaje y mis bigotes&quot;) //← (Aqui se INVOCA la funcion)
+// → El conejo blanco dice 'Oh, mi pelaje y mis bigotes'
+</code></pre>
+<p>Dado que cada funcion tiene su propio <strong>this</strong>, no puedes referenciar al this del 
+ambito envolvente en una funcion regular definida con la palabra clave <strong>function</strong>.
+Las funciones flecha son diferentes —no vinculan su propio this pero pueden ver 
+la vinculación <strong>this</strong> del ámbito que las rodea.</p>
+<pre><code class="language-js">let buscador = {
+  find(array) {
+    return array.some(v =&gt; v == this.value)
+    },
+    value: 5
+};
+console.log(buscador.find([4,5]));
+// → true
+</code></pre>
+<p>Se puede ver como <strong>this.value</strong> definida en funcion (<strong>find</strong>) hace referencia a la propiedad value del objeto que la contiene.
+Tambien se puede ver que no la funcion no esta asignada a una propiedad, quiere decir que tiene abreviatura "Method Definition Shorthand", esto es lo mismo que decir, </p>
+<pre><code class="language-js">find : function(array){
+        return array.some(v =&gt; v == this.value)
+        }
+</code></pre>
+<h2 id="prototipos">PROTOTIPOS</h2>
+<p>Los objetos simples creados con notacion <strong>{ }</strong> estan ligados a un objeto prototipo 
+llamado <strong>Object.prototype</strong> (que no tiene prototipo.).
+Las funciones se derivan de Function.prototype, y los arreglos se derivan de Array.prototype.</p>
+<p>Puedes utulizar <strong>Object.create</strong> para crear un objeto con un prototipo especifico.<br></p>
+<pre><code class="language-js">let protoAguila = {
+  speak( line ) {
+    console.log( `Soy una aguila '${ this.nombre }' y '${ line }'`)
+  }
+}
+let aguilaCalva = Object.create(protoAguila);
+conejo.nombre = &quot;calva&quot;
+conejo.speak(&quot;bonita&quot;)
+// → Soy una aguila calva y bonita
+
+let aguilaNegra = Object.create(protoAguila) //→ ( Crea otro objeto con el mismo prototipo ( protoAguila ) )
+</code></pre>
+<p>El aguila "proto" actua como contenedor para las propiedades que son
+compartidas por todos las aguilas. Un objeto de aguila individual, contiene propiedades que se aplican a el mismo, y deriva propiedades compartidas de su prototipo.</p>
+<pre><code class="language-js">console.log(Object.getPrototypeOf(aguilaCalva) == protoAguila) 
+// → true (Quiere decir que el prototipo de aguilaCalva es protoAguila)
+</code></pre>
+<h2 id="clases">CLASES</h2>
+<p>Una clase define la forma de un tipo de objeto, lo metodos y las propiedades que tiene. A dicho objeto se lo considera una instancia de clase.</p>
+<pre><code class="language-js">class Particle 
+{
+    speed = 0;
+    constructor ( position ) {
+        this.position = position;
+    }
+}
+let subParticula = new Particle(7)
+</code></pre>
+<p>Al igual que <strong>function</strong>, <strong>class</strong> se puede utilizar tanto en declaraciones como en expresiones.</p>
+<pre><code class="language-js">let object = new class { 
+    getWord() { return &quot;hello&quot; } 
+}
+console.log(object.getWord()) // → hello
+</code></pre>
+<h2 id="propiedades-privadas">PROPIEDADES PRIVADAS</h2>
+<p>Para declarar un metodo privado coloca el signo <strong>#</strong> delante de su nombre. Estos solo puede ser llamados dentro de la clase que los define.</p>
+<pre><code class="language-js">class SecretiveObject {
+  #getSecret() { return &quot;Me comí todas las ciruelas&quot; }
+  interrogate() {
+    let deboDecirlo = this.#getSecret();
+    return &quot;nunca&quot;;
+  }
+}
+</code></pre>
+<p>Para crear una propiedad privada, primero debe declararse en la definicion de la clase para estar disponible en absoluto.</p>
+<pre><code class="language-js">class RandomSource {
+  #max;
+  constructor(max){this.#max = max}
+  getNumber(){return Math.floor(Math.random()*this.#max);
+  }
+}
+</code></pre>
+<h2 id="mapas">MAPAS</h2>
+<p>Los mapas son estructuras que admiten claves y valores semejantes a un objeto. Pero adiferencias de estos los objetos no admiten objetos como claves, afortunadamente la clase Map esta escrita para este proposito.</p>
+<pre><code class="language-js">let ages = new Map()
+ages.set(&quot;Boris&quot;, 39)
+ages.set(&quot;Liang&quot;, 22)
+ages.set(&quot;Julia&quot;, 62)
+console.log(`Julia tiene ${ ages.get(&quot;Julia&quot;) }`) // → Julia tiene 62
+console.log(&quot;¿Se conoce la edad de Jack?&quot;, ages.has(&quot;Jack&quot;))// → ¿Se conoce la edad de Jack? false
+</code></pre>
+<p>Los metodos set, get y has forman parte del objeto Map</p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../cap5jsE/" class="btn btn-neutral float-left" title="FUNCIONES PRDEN SUPERIOR"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../cap8jsE/" class="btn btn-neutral float-right" title="BUGS - ERRORES">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../cap5jsE/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../cap8jsE/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

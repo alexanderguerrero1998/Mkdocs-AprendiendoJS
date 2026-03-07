@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>MIDULOS - APRENDIENDO JAVASCRIPT</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "MIDULOS";
+        var mkdocs_page_input_path = "bookJsEloq\\cap10jsE.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> APRENDIENDO JAVASCRIPT
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption"><span class="caption-text">JAVASCRIPT ELOQUENT</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../cap5jsE/">FUNCIONES PRDEN SUPERIOR</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../cap6jsE/">OBJETOS</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../cap8jsE/">BUGS - ERRORES</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../cap9jsE/">EXPRESIONES REGULARES</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">MIDULOS</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#modulos">MODULOS</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#programas-modulares">PROGRAMAS MODULARES</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#modulos-esecmascript">MODULOS ES("ECMAScript")</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#paquetes">PAQUETES</a>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../cap11jsE/">PROGRAMCION ASINCRONA</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../cap13jsE/">JAVASCRIPT - EL NAVEGADOR</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../cap14jsE/">DOM</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../cap15jsE/">MANEJO DE EVENTOS</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../cap18jsE/">HTTP Y FORMULARIOS</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../cap20jsE/">NODE JS</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">APRENDIENDO JAVASCRIPT</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">JAVASCRIPT ELOQUENT</li>
+      <li class="breadcrumb-item active">MIDULOS</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="javascript-cap10">JAVASCRIPT CAP10</h1>
+<h2 id="modulos">MODULOS</h2>
+<p>En la practica los programas crecen de forma organica, se agregan
+piezas funcionales segun las necesidades.</p>
+<h2 id="programas-modulares">PROGRAMAS MODULARES</h2>
+<p>Un modulo es un parte del programa que especifica en que otras
+piezas se basa y que funcionalidad proporciona par que otros modulos las utilicen (su interfaz).</p>
+<p>Las interfaces de modulos se parecen a las interfaces de objetos.
+Permite que una parte del modulo este disponible para el mundo exterior 
+y mantiene el resto en privado.</p>
+<p>Pero la interfaz de un modulo para que otros las utilicen
+es solo la mitad de la historia, un buen sistema de modulos
+requiere que los modulos especifiquen que codigo ellos utilizan
+de otros modulos. Estas relaciones se llaman dependencias. 
+Cuando estas dependencias se especifican claramente en el propio modulo 
+se pueden utilizar para averiguar que otros modulos deben estar presentes
+para poder utilizar un modulo dado y cargar las dependencias
+automaticamente.</p>
+<p>Cuando las formas en que los modulos interactuan entre si
+son explicitas, un sistema se vuelve mas como un LEGO donde las
+piezas interactuan a traves de conectores bien definidos.</p>
+<h2 id="modulos-esecmascript">MODULOS ES("ECMAScript")</h2>
+<p>Javacript admite dos tipos diferentes de programas.</p>
+<ul>
+<li>Los scripts: sus vinculadores se definen en el ambito global y 
+no tiene forma de referencias directamente a otro script.</li>
+<li>Los modulos: obtienen su propio ambito separado y admiten 
+las palabras claves <strong>import</strong> y <strong>export</strong> que no estan en los scrips
+para declarar sus dependencias e interfaz</li>
+</ul>
+<p>Un programa modular esta compuesto por varios modulos, conectados 
+a traves de sus importaciones y  exportaciones. </p>
+<pre><code class="language-js">// ARCHIVO JS.JS
+let names = [&quot;Domingo&quot;, &quot;Lunes&quot;, &quot;Martes&quot;, &quot;Miércoles&quot;,&quot;Jueves&quot;, &quot;Viernes&quot;, &quot;Sábado&quot;]
+export function dayName(number) {
+    return names[number]
+}
+
+export function dayNumber(name){
+    return names.indexOf(name)
+}
+
+// ARCHIVO OTRO.JS
+import {dayName} from &quot;./js.js&quot;
+let hoy = new Date();
+console.log(`Hoy es ${dayName(hoy.getDay())}`) // → Hoy es domingo
+</code></pre>
+<p>La palabra clave <strong>exports</strong> se puede colocar delante de la funcion,
+clase o definicion de vinculacion para indicar que esa vinculacion
+es parte de la intefaz del modulo. Esto permite que otros modulos utilicen esta vinculacion importandola.</p>
+<p>La palabra <strong>import</strong>, seguida de una lista de nombres de vinculacion
+entre llaves {}, hace que las <em>vinculaciones de otro modulo</em> esten disponibles 
+en el modulo actual. Los modulos se identifican por cadenas entre comillas.</p>
+<p>Para ejecutar un modulo se carga todos los modulos en los que depende, y las vinculaciones exportadas
+se ponen a disposicion de los modulos que lo importan.</p>
+<p>Las declaraciones de importacion y exportacion no pueden
+estar dentro de funciones, bucles u otros bloques.</p>
+<p>Así que la interfaz de un módulo consiste en una colección de vinculaciones
+con nombres, ala cuales tiene  acceso  otros modulos que
+dependen de ellas. Es decir, cuando pongo delante de las funciones la palabra <strong>export</strong> se crean estas "colecciones de viculaciones" que seran 
+ocupados por otros mudulos.</p>
+<p>Las viculaciones importadas se pueden renombar para darles un nuevo nombre <strong>local</strong> utilizando <strong>as</strong> despues de su nombre.</p>
+<pre><code class="language-js">import {dayName as nomDeJour} from &quot;./dayname.js&quot;;
+</code></pre>
+<p>Tambien es posible que un modulo tenga una exportacion especial llamda <strong>default</strong>, que amenudo se usa para modulo que solo exportan un solo enlace. Para defir una exportacion predeteminada se 
+escribe <em>export dfault</em> antes de una expresion, una declaracion de funcion o una declaracion de clase.</p>
+<pre><code class="language-js">export default [&quot;Invierno&quot;, &quot;Primavera&quot;, &quot;Verano&quot;, &quot;Otoño&quot;]
+import nombresEstaciones from &quot;./nombrsestaciones.js&quot;
+</code></pre>
+<h2 id="paquetes">PAQUETES</h2>
+<p>Un paquete es un fragmento de codigo que se puede distribuir (copiar e instalar).</p>
+<p>Cuando se encuentra un problema en un paquete o se añade 
+una nueva caracteristica, se actualiza el paquete ahora los programas 
+que dependen de el pueden copiar la nueva version para obtener  las
+mejoras que se hicieron en el codigo.</p>
+<p>Trabajar de esta manera requiere infraestructura. Necesitamos un
+lugar para almacenar y encontrar paquetes y una forma conveniente
+de instalr y actualizarlos.</p>
+<p>En el Javascrip esta infraestructura es prevista por NPM.</p>
+<p><code>NPM</code> es dos cosas: un servicio en linea donde puedes descargar ( y subir )
+paquetes y un programa (incluido con Node.js) que te ayuda a instalar y gestionarlos.</p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../cap9jsE/" class="btn btn-neutral float-left" title="EXPRESIONES REGULARES"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../cap11jsE/" class="btn btn-neutral float-right" title="PROGRAMCION ASINCRONA">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../cap9jsE/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../cap11jsE/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

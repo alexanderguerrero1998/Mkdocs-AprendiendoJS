@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>NODE JS - APRENDIENDO JAVASCRIPT</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "NODE JS";
+        var mkdocs_page_input_path = "bookJsEloq\\cap20jsE.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> APRENDIENDO JAVASCRIPT
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption"><span class="caption-text">JAVASCRIPT ELOQUENT</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../cap5jsE/">FUNCIONES PRDEN SUPERIOR</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../cap6jsE/">OBJETOS</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../cap8jsE/">BUGS - ERRORES</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../cap9jsE/">EXPRESIONES REGULARES</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../cap10jsE/">MIDULOS</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../cap11jsE/">PROGRAMCION ASINCRONA</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../cap13jsE/">JAVASCRIPT - EL NAVEGADOR</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../cap14jsE/">DOM</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../cap15jsE/">MANEJO DE EVENTOS</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../cap18jsE/">HTTP Y FORMULARIOS</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">NODE JS</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#el-comando-node">EL COMANDO NODE</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#modulos">MODULOS</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#instalando-con-npm">INSTALANDO CON NPM</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#archivos-de-paquete">ARCHIVOS DE PAQUETE</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#versiones">VERSIONES</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#el-modulo-del-sistema-de-archivos">EL MODULO DEL SISTEMA DE ARCHIVOS</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#el-modulo-http">EL MODULO HTTP</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#flujos">FLUJOS</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#un-servidor-de-archivos">UN SERVIDOR DE ARCHIVOS</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#errores-comunes-del-sistema-node">ERRORES COMUNES DEL SISTEMA NODE</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#errores-comunes-de-red-servidores-http">ERRORES COMUNES DE RED (SERVIDORES HTTP)</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#preguntas">PREGUNTAS</a>
+    </li>
+    </ul>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">APRENDIENDO JAVASCRIPT</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">JAVASCRIPT ELOQUENT</li>
+      <li class="breadcrumb-item active">NODE JS</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="javascript-cap20">JAVASCRIPT CAP20</h1>
+<p>Node.js es un entorno de ejecucion que permite que javascript se interprete fuera del navegador es decir en el servidor y fue creado  para resolver un problema concreto: manejar muchas conexiones de red al mismo tiempo. </p>
+<p>Las tenologias tradiciones (como apache con PHP) creaban un hilo nuevo por  cada conexcion. Si llegaban 10.000 usuarios al mismo tiempo, necesitaban 10.000 hilos lo cual consumia mucha memoria</p>
+<p>Node.js resolvio esto con la programación asincrónica, donde un solo hilo permite al programa realizar varias conexiones/tareas a la vez sin bloquearse esperando que una termine para comenzar la siguiente. </p>
+<p>JavaScript fue el lenguaje ideal para esto porque, al no tener un sistema propio de manejo de entrada y salida, pudo adaptarse perfectamente al modelo de Node sin generar conflictos. En resumen, Node.js convierte a JavaScript en una herramienta poderosa para sistemas en red porque no espera, sino que reacciona.</p>
+<h2 id="el-comando-node">EL COMANDO NODE</h2>
+<p>Cuando Node.js esta instalado, proporciona el comando <code>node</code> para ejecutar archivos JavaScript desde la linea de comandos. El metodo <code>console.log</code> funciona igual que el navegador, pero en lugar de mostrar el resultado en la consola del navegador, lo imprime en la terminal.</p>
+<p>Ademas todas las funciones estandar de JavaScript como <code>Array</code>, <code>Math</code> o <code>JSON</code> estan disponibles en Node, pero no las propias del navegador como <code>document</code> o <code>prompt</code></p>
+<h2 id="modulos">MODULOS</h2>
+<p>Node.js soporta dos sistemas de modulos: el tradicional CommonJS, que usa <code>require</code> y funciona con archivos .js. Y el modenos ES Modules, que se usa <code>import</code> y <code>export</code> y funciona con archivos <code>.mjs</code> </p>
+<p>Cuando se importa un archivo, Node resuelve esa ruta de tres formas. si comienza con <code>./</code>, <code>../</code> o <code>/</code> lo busca como un archivo local; si no tiene esa forma, lo busca como un módulo integrado de Node o dentro de la carpeta <code>node_modules</code>.</p>
+<h2 id="instalando-con-npm">INSTALANDO CON NPM</h2>
+<p>NPM cumple dos papeles, es un repositorio en linea de modulos JavaScript que viene instalado junto con Node.js y a la vez es una herramienta que permite descargar e instalar paquetes. Al ejecutar <code>npm install</code> seguido del nombre de un paquete, <code>npm</code> lo descarga y crea una carpeta llamada <code>node_modules</code> en el directirio actual, donde guarda el codigo de ese paquete para que pueda ser usado en el proyecto.</p>
+<p>Una caracteristica importante de NOM es que instala los paquetes localmente en cada proyecto y no en un lugar centralizado del sistema. Esto permite  que cada proyecto tenga sus propias dependencias.</p>
+<h2 id="archivos-de-paquete">ARCHIVOS DE PAQUETE</h2>
+<p>Despues de ejecutar <code>npm install</code> para instalar algun paquete, no solo te creara un directorio <code>node_modules</code>, sino tambien un archivo llamdao <code>package.json</code> en tu directorio actual. Se recomienda tener este ultimo archivo en cada proyecto ya que contiene informacion basica
+ del proyecto como us nombre, version y descripcion, pero lo mas importante es que registra todas las <strong>dependencias</strong> , es edcir, los paquetes externos que el proyecto necesita para funcionar.
+ <code>js
+ {
+  "name": "prueba",
+{
+  "name": "prueba",
+  "version": "1.0.0",
+  "description": "",
+  "version": "1.0.0",
+  "description": "",
+  "description": "",
+  "main": "index.js",
+  "main": "index.js",
+  "scripts": {
+  "scripts": {
+    "test": "echo \"Error: no test specified\" &amp;&amp; exit 1"
+    "test": "echo \"Error: no test specified\" &amp;&amp; exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs"
+}</code></p>
+<h2 id="versiones">VERSIONES</h2>
+<p>Un archivo <code>pakage.json</code> lista tanto la version del propio programa como las versiones de sus dependecias.</p>
+<p>NPM utiliza el versionado semantico para gestionar la compatibilidad entre paquetes. Una version semantica consiste en tres numeros, separados por puntos, como <code>2.3.0</code>. Cada vez que se añade una nueva funcionalidad el numero de en medio cambia (esto no rompe la antigua interfaz). Pero cuando el primer numero cambia rompe la compatibilidad con versiones anteriores (esto si rompe la antigua interfaz).</p>
+<p>El caracter de intercalacion <code>^</code> delante del numero de version indica que se puede instalar cualquier version con el numero dado, por ejemplo <code>^2.3.0</code> permite instalar cualquier versión mayor o igual <code>2.3.0</code> y menor que <code>3.0.0.</code></p>
+<p><code>npm</code> permite a los desarrolladores publicar sus propios paquetes usando <code>npm publish</code>, simpre que el nombre del paquete no este ya en uso.</p>
+<h2 id="el-modulo-del-sistema-de-archivos">EL MODULO DEL SISTEMA DE ARCHIVOS</h2>
+<p>El modulo <code>node:fs</code> es el sistema de archivos de Node.js y permite leer, escribir y manipular archivos desde el codigo. La funcion <code>readFile</code> lee un archivo y luego llama a una funcion con el contenido del archivo, y requiere especificar la codificacion <code>utf-8</code> para descodificar el archivo en una cadena. Si no pasas una codificacion, Node asumira que estas interesado en datos binarios  y te dara un objeto <code>Buffer</code> en lugar de una cadena. Este es similar a un array que contiene numero que representan los bytes.</p>
+<pre><code class="language-js">import {readFile} from &quot;node:fs&quot;
+readFile(&quot;texto.txt&quot;,&quot;utf-8&quot;,(error, texto) =&gt; {
+    if(error) throw error
+    console.log(texto)
+})
+// → Esto es un texto de puebas. 
+</code></pre>
+<pre><code class="language-js">// Cuando no especificas la codificacion obtienes esto:
+
+&lt;Buffer 45 73 74 6f 20 65 73 20 75 6e 20 74 65 78 74 6f 20 64 65 20 70 75 65 62 61 73 2e 20&gt;
+</code></pre>
+<p>La <code>writeFile</code> se utiliza para escribir un archivo en el disco y asume <code>utf-8</code> por defecto cuando recibe el texto. Y ademas sobre escribe el archivo desde cero.</p>
+<p><code>writeFile</code> recibe tres argumentos:</p>
+<ul>
+<li><strong>La ruta del archivo</strong> (obligatorio): dónde guardar el archivo.</li>
+<li><strong>El contenido</strong> (obligatorio): la cadena de texto o Buffer que quieres escribir.</li>
+<li><strong>Un callback</strong> (obligatorio en la versión con callbacks): función que se ejecuta cuando termina, recibiendo un error si algo salió mal.</li>
+</ul>
+<pre><code class="language-js">import {writeFile} from 'node:fs'
+writeFile(&quot;texto.txt&quot;,&quot;Node estuvo aqui!&quot;, (err)=&gt;{
+    if(err) console.log(err)
+    else console.log(&quot;Archivo escito&quot;)
+}) // → Node estuvo aqui!
+</code></pre>
+<p>El módulo <code>node:fs</code> contiene muchas otras funciones utiles: <code>readdir</code> te dará
+los archivos en un directorio como un array de cadenas, <code>stat</code> recuperará información sobre un archivo, <code>rename</code> cambiará el nombre de un archivo, <code>unlink</code> lo
+eliminará, entre otros.</p>
+<p>Node ofre tres formas de trabajar con archivos:</p>
+<ul>
+<li>Usando callbacks con <code>node:fs</code> </li>
+<li>Usando promesas <code>node:fs/promises</code>
+  ```js
+  import {readFile} from 'node:fs/promises'</li>
+</ul>
+<p>readFile("texto.txt","utf-8")
+  .then((text)=&gt; console.log(text))
+  <code>- Usando versiones Sincronas como `readFileSync` que detiene completamente el programa mientras se ejecuta.</code>js
+  import {readFileSync} from "node:fs";
+  console.log("El archivo contiene:",
+  readFileSync("texto.txt", "utf8"));</p>
+<p>```</p>
+<h2 id="el-modulo-http">EL MODULO HTTP</h2>
+<p>El modulo <code>node:http</code> permite crear un servidor HTTP con pocas lineas de codigo usando <code>createServer</code>, esta funcion recibe como parametro un call =back que se ejecuta cada vez que un cliente hace una solicitud, el callback recibe dos objetos: <code>solicitud</code> (request) que contiene informacion de la URL solicitada, y una <code>respuesta</code>(response) que sirve para mandar la respuesta al cliente.</p>
+<p>Esto es todo lo que se necesita para iniciar un servidor HTTP.</p>
+<pre><code class="language-js">import {createServer} from 'node:http'
+createServer((solicitud, respuesta)=&gt;{
+      respuesta.writeHead(200,{&quot;content-type&quot;:&quot;text/html&quot;})
+      respuesta.write(`Hola! Solicitaste esto:${solicitud.url}`)
+      respuesta.end()
+}).listen(8000) 
+// → Hola! Solicitaste esto: /
+</code></pre>
+<p>Para responder se usan tres pasos: <code>writeHead</code> para enviar codigo de estado <strong>( 200 para OK)</strong> y un obbjeto que contiene los encabezados <code>content-type</code> para indicar que estamos enviando de vuelta un archivo HTML, <code>write</code> para enviar el contenido <strong>(el documento en si)</strong> y <code>end</code> para cerrar la respuesta. La llamada a <code>server.listen</code> permite escucjar conexiones en el puerto 8000.</p>
+<h2 id="flujos">FLUJOS</h2>
+<p>En Node.js, el objeto <code>response</code> de un servidor HTTP es un flujo de escritura <strong>(Writable Stream)</strong>. Esto significa que puedes enviar datos poco a poco usando <code>write()</code> y cerrar la comunicación con <code>end()</code>. </p>
+<p>También puedes crear flujos de escritura hacia archivos con <code>createWriteStream</code> del módulo <code>node:fs</code>,lo que permite escribir archivos por partes.</p>
+<p>Por otro lado, el objeto <code>request</code> es un <strong>flujo legible (Readable Stream)</strong>. En lugar de usar métodos para leer, se trabaja con <strong>eventos</strong>. En Node, los objetos que emiten eventos usan <code>on(nombreEvento, funcion)</code> para reaccionar cuando algo ocurre.</p>
+<p>Los streams legibles tienen principalmente dos eventos importantes:</p>
+<ul>
+<li>
+<p><code>data</code> → se ejecuta cada vez que llegan datos.</p>
+</li>
+<li>
+<p><code>end</code> → se ejecuta cuando ya no hay más datos.</p>
+</li>
+</ul>
+<p>Esto es ideal para datos que llegan en partes, como una solicitud HTTP o un archivo grande.</p>
+<p>Un flujo legible <strong>(Readable Stream)</strong> es un objeto que <strong>produce datos por partes (chunks) a lo largo del tiempo</strong>, en lugar de entregar todo de una sola vez.</p>
+<p>Un flujo escribible <strong>(Writable Stream)</strong> es un objeto al que se le pueden enviar datos por partes.</p>
+<p>Este codigo crea un servidor que lee los cuerpos de las solicitudes y los reenvia al cliente como texto en mayusculas.</p>
+<pre><code class="language-js">import {createServer} from &quot;node:http&quot;;
+
+createServer((solicitud, respuesta) =&gt; {
+    respuesta.writeHead(200, {&quot;Content-Type&quot;: &quot;text/plain&quot;});
+    solicitud.on(&quot;data&quot;, fragmento =&gt; respuesta.write(fragmento.toString().toUpperCase()));
+    solicitud.on(&quot;end&quot;, () =&gt; respuesta.end());
+}).listen(8000, ()=&gt; console.log(&quot;Servidor escuchando en el pueto 8000&quot;));
+</code></pre>
+<p>Recuerda que desde el navegador solo se pueden hacer peticiones GET</p>
+<p>Para hacer peticiones desde la consola se ocupa esto:</p>
+<pre><code class="language-sh">curl.exe -X POST http://localhost:8000 -d &quot;Hola Mundo&quot;
+// → Hola Mundo
+</code></pre>
+<p>Para hacer peticiones desde el navegador</p>
+<pre><code class="language-js">fetch(&quot;http://localhost:8000/&quot;, {
+    method: &quot;POST&quot;,
+    body: &quot;Hola Mundo!&quot;
+})
+.then(respuesta_O_Response =&gt; respuesta_O_Response.text())
+.then(x =&gt; console.log(x))
+// → Hola Mundo!
+</code></pre>
+<h2 id="un-servidor-de-archivos">UN SERVIDOR DE ARCHIVOS</h2>
+<p>Utilizaremos un objeto llamado methods
+para almacenar las funciones que manejan los diferentes métodos HTTP. Los controladores de métodos son funciones async que reciben el objeto de solicitud como argumento y devuelven una promesa que se resuelve a un objeto que
+describe la respuesta.</p>
+<pre><code class="language-js">import { error } from &quot;node:console&quot;;
+import {createServer} from &quot;node:http&quot;
+import {metodos} from &quot;./metodos.js&quot;
+
+
+import &quot;./methodGET.js&quot;
+import &quot;./methodPUT.js&quot;
+import &quot;./methodDELETE.js&quot;
+import &quot;./methodMKCOL.js&quot;
+
+
+createServer((req, resp)=&gt;{
+
+    let handler = metodos[req.method] || notAllowed;
+
+    handler(req).catch(error =&gt; 
+    {
+        if (error.status != null) return error;
+        return { body: String(error), status: 500 };
+
+    }).then(( {body, status = 200, type = &quot;text/plain&quot;}) =&gt; 
+    {
+        resp.writeHead(status, {&quot;Content-Type&quot;: type});
+        if (body &amp;&amp; body.pipe) body.pipe(resp);
+        else resp.end(body);
+
+    });
+
+}).listen(8000,()=&gt;console.log(&quot;Servidor escuchando en el puerto 8000 ...&quot;))
+
+async function notAllowed(req) {
+    return {
+        status:405,
+        body : `Metodo ${req.method} no permitido`
+    }
+}
+
+
+</code></pre>
+<p>Esto inicia un servidor que simplemente devuelve respuestas de error 405, que es el código utilizado para indicar que el servidor se niega a manejar un método determinado.</p>
+<p>Para determinar quw ruta de archivo corresponde a un URL de solicitud, la funcio  <code>urlRuta</code> utiliza la clase integrada URL para analizar la URL. Este constructor espera un url completa, no solo la parte diagonal que obtenemos con <strong>resquest.url</strong>, por lo que proporcionamos un nombre de dominio falso para completar <code>http://d</code>. Extraer su ruta, se sera algo como "/archivo.txt", la decodifica para eliminar los codigos de escape estilo %20 y la resuelve en relacion con el directorio de trabajo dle programa.</p>
+<p>El objeto URL es una herramienta del navegador y de Node.js que descompone una dirección web en piezas claras. </p>
+<p>Recibe dos argumentos: Una <code>url</code> (Obligatorio) y <code>base</code> (opcional, solo necesario si el primer argumento es un URL relativa) </p>
+<p>Sus propiedades principales son:</p>
+<ul>
+<li><code>href:</code> es la URL completa:<br />
+  https://www.ejemplo.com:8080/productos/camiseta?id=15&amp;color=rojo#info</li>
+<li><code>protocol:</code> el protocolo que usa la página: 
+  <code>http</code> - <code>https</code> - <code>ftp</code></li>
+<li><code>hostname:</code> el dominio del sitio: www.ejemplo.com</li>
+<li><code>port:</code> el puerto usado por el servidor: 8080</li>
+<li><code>host:</code> Es la combinacion del hostname + puerto: www.ejemplo.com:8080</li>
+<li><code>pathname:</code> Es la ruta dentro del servidor: /productos/camiseta</li>
+<li><code>search:</code> son parametros de consulta:?id=15&amp;color=rojo</li>
+<li><code>searchParams:</code> Es un objeto especial para leer parámetros fácilmente: direccion.searchParams.get("id")</li>
+</ul>
+<pre><code class="language-js">import {parse} from &quot;node:url&quot;
+import {resolve, sep} from &quot;node:path&quot;
+
+const directorioBase =  process.cwd();
+
+function urlRuta(url){
+    let {pathname} = new URL(url,&quot;http://d&quot;);
+    let ruta = resolve(decodeURIComponent(pathname).slice(1));
+    if(ruta != directorioBase &amp;&amp; !ruta.startsWith(directorioBase + sep))
+    {
+        throw {status:405, body:&quot;Prohibido&quot;};
+    }
+    return ruta;
+}
+
+</code></pre>
+<p><code>process.cwd()</code>  (donde cwd significa
+“directorio de trabajo actual”) devuelve: el directorio donde se está ejecutando el programa. Ejm </p>
+<pre><code class="language-bash">C:\Users\alexa\OneDrive\Escritorio\sis_files&gt;
+</code></pre>
+<p>Ese sera el límite del servidor.
+El programa solo permitirá acceder a archivos dentro de esa carpeta.</p>
+<p><code>resolve()</code> convierte la ruta en una ruta absoluta del sistema.
+Ejemplo:</p>
+<pre><code>Si el servidor corre en: 
+/home/alex/mi-servidor
+
+Y el usuario pide: 
+/imagenes/foto.png
+
+resolve() genera:
+/home/alex/mi-servidor/imagenes/foto.png
+</code></pre>
+<p>Aquí es exactamente donde ocurre lo que decía el texto: <strong>"resolver la ruta respecto al directorio de trabajo del programa"</strong></p>
+<p>Porque está usando el directorio actual del programa como base.</p>
+<p><code>decodeURIComponent(pathname)</code> convirte los codigos de escape.</p>
+<p><code>sep</code> representa el separador de carpetas del sistema operativo. devuelve automáticamente el correcto dependiendo del sistema donde corre el programa.</p>
+<pre><code class="language-js">import {createReadStream} from &quot;node:fs&quot;
+import {stat, readdir} from &quot;node:fs/promises&quot;
+import {lookup} from &quot;mime-types&quot;
+
+import {metodos} from &quot;./metodos.js&quot;
+import {urlRuta} from &quot;./urlRuta.js&quot;
+
+
+metodos.GET = async function (req) {
+    let ruta = urlRuta(req.url);
+    let stats;
+    try{
+        stats = await stat(ruta)
+
+    } catch (error){
+        if(error.code != &quot;ENOENT&quot;) throw error
+        else return {status:404, body: &quot;Archivo no encontrado&quot;};
+    }
+    if(stats.isDirectory()) {
+        return {body: (await readdir(ruta)).join(&quot;\n&quot;)};
+    } else {
+        return {body: createReadStream(ruta), type: lookup(ruta) || &quot;application/octet-stream&quot;}
+    }
+
+};
+
+
+
+</code></pre>
+<p><code>stat</code> Sirve para obtener información de cualquier cosa en el sistema de archivos, y lanza un error cuando no puede obtener esa informacion. </p>
+<p>El sistema responde con un objeto llamado <code>Stats</code>. Este objeto contiene información como:
+si es <strong>archivo</strong>, si es <strong>carpeta</strong>, <strong>tamaño</strong>, <strong>fecha de creación</strong>, <strong>fecha de modificación</strong>, <strong>permisos</strong></p>
+<pre><code class="language-bash">Stats {
+  size: 2048,
+  mtime: 2026-03-06,
+  ...
+}
+</code></pre>
+<p>Internamente el objeto <code>Stats</code> tiene metodos utilies:
+<code>stats.isFile()</code>
+<code>stats.isDirectory()</code> <code>stats.isSymbolicLink()</code>.</p>
+<p><code>error.code</code> permite identifica el tipo de error. Puede vale: <code>ENOENT</code> (archivo no existe) <code>EACCES</code> (permiso denegado) <code>EEXIST</code> (el archivo ya existe)</p>
+<h3 id="errores-comunes-del-sistema-node">ERRORES COMUNES DEL SISTEMA NODE</h3>
+<table>
+<thead>
+<tr>
+<th>código</th>
+<th>significado</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ENOENT</code></td>
+<td>archivo o ruta no existe</td>
+</tr>
+<tr>
+<td><code>EACCES</code></td>
+<td>permiso denegado</td>
+</tr>
+<tr>
+<td><code>EPERM</code></td>
+<td>operación no permitida</td>
+</tr>
+<tr>
+<td><code>EEXIST</code></td>
+<td>el archivo ya existe</td>
+</tr>
+<tr>
+<td><code>EISDIR</code></td>
+<td>es un directorio cuando esperabas archivo</td>
+</tr>
+<tr>
+<td><code>ENOTDIR</code></td>
+<td>no es un directorio</td>
+</tr>
+<tr>
+<td><code>ENOTEMPTY</code></td>
+<td>directorio no está vsacío</td>
+</tr>
+<tr>
+<td><code>EMFILE</code></td>
+<td>demasiados archivos abiertos</td>
+</tr>
+<tr>
+<td><code>EBADF</code></td>
+<td>descriptor de archivo inválido</td>
+</tr>
+<tr>
+<td><code>EINVAL</code></td>
+<td>argumento inválido</td>
+</tr>
+<tr>
+<td><code>EFBIG</code></td>
+<td>archivo demasiado grande</td>
+</tr>
+<tr>
+<td><code>EROFS</code></td>
+<td>sistema de archivos de solo lectura</td>
+</tr>
+</tbody>
+</table>
+<h3 id="errores-comunes-de-red-servidores-http">ERRORES COMUNES DE RED (SERVIDORES HTTP)</h3>
+<table>
+<thead>
+<tr>
+<th>código</th>
+<th>significado</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>EADDRINUSE</code></td>
+<td>el puerto ya está en uso</td>
+</tr>
+<tr>
+<td><code>ECONNREFUSED</code></td>
+<td>conexión rechazada</td>
+</tr>
+<tr>
+<td><code>ECONNRESET</code></td>
+<td>conexión reiniciada</td>
+</tr>
+<tr>
+<td><code>ETIMEDOUT</code></td>
+<td>tiempo de espera agotado</td>
+</tr>
+<tr>
+<td><code>EHOSTUNREACH</code></td>
+<td>host no alcanzable</td>
+</tr>
+<tr>
+<td><code>ENETUNREACH</code></td>
+<td>red no alcanzable</td>
+</tr>
+</tbody>
+</table>
+<p><code>readdir</code> Sirve para leer el contenido de un directorio. Es decir, te devuelve los nombres de los archivos y carpetas que están dentro.</p>
+<pre><code class="language-bash">[&quot;archivo1.txt&quot;,&quot;archivo2.txt&quot;,&quot;imagen.png&quot;]
+</code></pre>
+<p><code>join()</code> convierte un array en un string. El parámetro indica con qué separador unir los elementos.</p>
+<pre><code class="language-bash">archivo1.txt
+archivo2.txt
+imagen.png
+</code></pre>
+<p><code>createReadStream</code> Sirve para leer un archivo poco a poco, no le devuelve al cliente todo el archivo de golpe, lo que hace es entregarle al cliente la informacion por partes, evitando asi cargar todo el archivo en memoria.</p>
+<p><code>lookup</code> Sirve para saber qué tipo de archivo es.</p>
+<pre><code class="language-js">import {createWriteStream} from &quot;node:fs&quot;
+import {metodos} from &quot;./metodos.js&quot;
+import {urlRuta} from &quot;./urlRuta.js&quot;
+
+function pipeStream(from, to){
+    return new Promise((resolve, reject) =&gt; {
+        from.on(&quot;error&quot;, reject);
+        to.on(&quot;error&quot;, reject);
+        to.on(&quot;finish&quot;,resolve)
+        from.pipe(to)
+    });
+}
+metodos.PUT =  async function (req) {
+    let ruta = urlRuta(req.url);
+    await pipeStream(req, createWriteStream(ruta));
+    return {status: 204}
+
+}
+
+</code></pre>
+<pre><code class="language-js">import {rmdir, unlink,stat} from &quot;node:fs/promises&quot;
+import {metodos} from &quot;./metodos.js&quot;
+import {urlRuta} from &quot;./urlRuta.js&quot;
+
+metodos.DELETE = async function(req) 
+{
+    let ruta = urlRuta(req.url)
+    let stats;
+    try{
+        stats = await stat(ruta)
+    }catch(error){
+        if(error.code != &quot;ENOENT&quot;) throw error;
+        else return {status:204}
+    }
+    if(stats.isDirectory()) await rmdir(ruta);
+    else await unlink(ruta)
+    return {status:204}
+
+}
+</code></pre>
+<p><code>unlink</code> elimina un archivo.</p>
+<p>Solo funciona con archivos. Si intentas usarlo en una carpeta, Node lanza un error.</p>
+<p><code>rmdir</code> elimina un directorio (carpeta).</p>
+<p>Pero solo funciona si la carpeta está vacía.
+Si tiene archivos dentro → error.</p>
+<h2 id="preguntas">PREGUNTAS</h2>
+<p><strong>¿Que tiene que ver Node.js con npm?</strong></p>
+<p>Node.js es un entorno de ejecucion de JavaScript en el servidor.
+NPM es el gestor de paquetesde Node.js </p>
+<p><strong>¿Que tiene que ver un entorno de ejecicion con un gestor de paquetes?</strong></p>
+<p>Cuando escribes codigo en Node.js casi siempre necestas librerias externas. Alguien tiene que descargarlas, versionalas y organizarlas. Para eso existe npm.</p>
+<p>Es como la relacion entre: </p>
+<ul>
+<li><strong>Python</strong>(entorno) y <strong>pip</strong> (gestor de paquetes)</li>
+<li><strong>Java</strong> (entorno) y <strong>Maven</strong> (gestor de paquetes)</li>
+</ul>
+<p>Cada lenguaje/entorno casi siempre trae sus propio gestor de paquetes, no porque sean lo mismo, sino por que sin el, el entorno seria poco practico.</p>
+<p><strong>¿ Osea si yo instalo node tambien se instala npm ?</strong></p>
+<p>Sí, exactamente. Al instalar Node.js, npm se instala automáticamente junto con él.</p>
+<p><strong>¿Entonce cada entorno de ejecucion debe tener un gestor de paquetes? ¿Porque?</strong></p>
+<p>Cuando desarrollas software, rara vez escribes todo desde cero. Usas código que otros ya escribieron (librerías).</p>
+<p>¿De dónde descargo esa librería?
+¿Qué versión uso?
+¿Qué pasa si esa librería necesita otras librerías?
+¿Cómo comparto las dependencias de mi proyecto con otro desarrollador?</p>
+<p>Sin un gestor de paquetes tendrías que hacer todo eso a mano, lo cual es tedioso y propenso a errores.</p>
+<p>No es que un entorno de ejecucion necesite un gestor de paquetes para funcionar si no que el desarrollador lo necesita para trabajar de forma comoda y organizada. Por eso siempre aparecen juntos.</p>
+<p><strong>¿Cual es la diferencia de un entorno de desarrollo y  de un entorno de ejecucion y cuales son sus siglas ?</strong></p>
+<p>Entorno de Ejecución (Runtime Environment)</p>
+<p>Siglas: <strong>RE</strong> (o en inglés Runtime)</p>
+<p>Es donde el código corre/se ejecuta. Es el ambiente que interpreta y procesa tu código cuando ya está listo para funcionar.</p>
+<ul>
+<li>Ejemplo: Node.js ejecuta JavaScript en el servidor</li>
+</ul>
+<p>Entorno de Desarrollo (Development Environment)</p>
+<p>Siglas: <strong>DE</strong> (o en inglés Dev Environment)
+Es donde el desarrollador escribe y prueba el código. Incluye todas las herramientas necesarias para programar.</p>
+<ul>
+<li>Editor de código (VS Code)</li>
+<li>Librerías de prueba</li>
+<li>Herramientas de depuración (debugger)</li>
+<li>etc. </li>
+</ul>
+<p><strong>¿Que tiene que ver nodejs con el el servidor?</strong> </p>
+<p>Antes de Node.js, JavaScript solo podia correr en el navegador. No podias usarlo para programar la logica de un servidor.</p>
+<p>¿Qué significa eso?</p>
+<p>Que con Node.js puedes usar JavaScript para:</p>
+<ul>
+<li>Recibir peticiones de usuarios</li>
+<li>Conectarte a una base de datos</li>
+<li>Devolver respuestas</li>
+<li>Leer archivos del sistema</li>
+</ul>
+<p>Cosas que antes solo podías hacer con lenguajes como Java, PHP o Python.</p>
+<p><strong>¿Aque te refieres con que node.js permite correr JavaScript en el servidor ? es decir, ¿Cual es la diferencia de que JavaScript corra en el servidor o en el navegador ?</strong></p>
+<p>Cuando JavaScript corre en el navegador, tiene acceso a cosas del navegador como:</p>
+<ul>
+<li>El HTML de la página</li>
+<li>Los botones y formularios</li>
+<li>Las cookies</li>
+<li>La pantalla del usuario</li>
+</ul>
+<p>Pero no puede tocar el sistema operativo, leer archivos, ni conectase directamente a una base dedaos.</p>
+<p>En el servidor: cuando JavaScript corre en el servidor con Node.js, tiene acceso a cosas del sistema como:</p>
+<ul>
+<li>Archivos del disco</li>
+<li>Base de datos</li>
+<li>Red</li>
+<li>Memoria del sistema</li>
+</ul>
+<p>Pero no tiene navegador, ni pantalla, ni HTML que manipular.</p>
+<p>Es el mismo lenguaje (JavaScript), pero dependiendo de dónde corre, tiene acceso a cosas distintas y cumple roles distintos.</p>
+<p><strong>Módulos ES y Node.js</strong></p>
+<p>¿Qué pasa si quiero usar módulo ES sin <code>package.json</code>?</p>
+<ul>
+<li>Node no reconocerá <code>import/export</code> hasta que declares <code>"type": "module"</code>en <code>package.json</code>.</li>
+</ul>
+<p>Pregunta: ¿Para qué sirve <code>npm init -y</code>?</p>
+<ul>
+<li>Crea un <code>package.json</code> con valores por defecto. Sin <code>-y</code>, Node te hace preguntas interactivas.</li>
+</ul>
+<p><strong>Promesas y fetch</strong></p>
+<ul>
+<li>
+<p><strong>Async y Promesas:</strong> Toda función async devuelve una Promesa.</p>
+</li>
+<li>
+<p><code>.then()</code> recibe el valor con el que se resolvió la Promesa.</p>
+</li>
+<li>
+<p><code>.catch()</code> atrapa errores de la función async o de la Promesa.</p>
+</li>
+<li>
+<p>Estados de Promesas: <code>pending</code>, <code>fulfilled</code>, <code>rejected</code>.</p>
+</li>
+<li>
+<p>En <code>fetch</code>, la Promesa se resuelve con un objeto <code>Response</code> que contiene status, ok, headers, text(), json().</p>
+</li>
+<li>
+<p>Los números (o valores primitivos) devueltos por Promesas normales <strong>no tienen propiedades como</strong> <code>status</code> o <code>body</code>, esas son propias de <code>Response</code> en HTTP.</p>
+</li>
+</ul>
+<p><strong>Diferencia entre conceptos</strong></p>
+<ul>
+<li>
+<p><code>resolve()</code> → función de Promesas que entrega el valor de resolución.</p>
+</li>
+<li>
+<p><code>response</code> → objeto HTTP que representa la respuesta de un servidor.</p>
+</li>
+<li>
+<p>Async no crea <code>status</code> ni <code>body</code>, eso depende del objeto que devuelvas.</p>
+</li>
+<li>
+<p>En <code>fetch</code>, <code>Response</code> tiene esas propiedades porque así lo diseñó la API, no por ser async.</p>
+</li>
+</ul>
+<p><strong>Reglas prácticas que se desprenden</strong></p>
+<ul>
+<li>
+<p>Async = Promesa garantizada.</p>
+</li>
+<li>
+<p>Handler async permite manejar cualquier operación demorada sin cambiar la estructura del servidor.</p>
+</li>
+<li>
+<p><code>.then()</code> recibe exactamente el valor que <code>resolve()</code> entrega.</p>
+</li>
+<li>
+<p><code>.catch()</code> solo funciona si la función async lanza un error o la Promesa se rechaza.</p>
+</li>
+</ul>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../cap18jsE/" class="btn btn-neutral float-left" title="HTTP Y FORMULARIOS"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../cap18jsE/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>
