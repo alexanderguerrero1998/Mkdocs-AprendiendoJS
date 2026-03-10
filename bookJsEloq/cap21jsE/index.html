@@ -89,6 +89,171 @@
               
                 <h1 id="javascript-cap21">JAVASCRIPT CAP21</h1>
 <h2 id="long-polling">LONG POLLING</h2>
+<p>Es una app de charlas en tiempo real (como un foro en vivo), donde el problema es:</p>
+<p>¿Cómo hace el servidor para avisar a todos los navegadores cuando algo cambia?</p>
+<p>El <strong>problema</strong>: El servidor no puede iniciar una conexión hacia el navegador, solo el navegador puede conectarse al servidor.
+El servidor no sabe quién tiene la página abierta.</p>
+<p>La <strong>solución</strong>: <code>Long Polling</code></p>
+<p>En lugar de que el servidor avise, el navegador pregunta constantemente pero de forma inteligente.</p>
+<p>Como ya mencionamos anteriormente el problema principal es que el servidor no puede iniciar una conexión hacia el navegador, y los routers suelen bloquear ese tipo de conexiones de todos modos. Entonces la solución es que sea el navegador quien mantenga una conexión abierta hacia el servidor.
+Sin embargo, HTTP normal no sirve para esto porque funciona en un solo sentido: el cliente pregunta, el servidor responde una vez y se cierra la conexión. Existe WebSockets que permite comunicación bidireccional, pero es más complejo de implementar.
+Por eso se usa una técnica más simple llamada long polling, que funciona así:</p>
+<ul>
+<li>El navegador hace una solicitud HTTP y se queda esperando la respuesta.</li>
+<li>El servidor no responde hasta que haya algo nuevo que informar.</li>
+<li>Cuando llega una novedad, el servidor responde y el navegador abre inmediatamente una nueva solicitud.</li>
+<li>Si pasa demasiado tiempo sin novedades, el servidor responde vacío para evitar que la conexión expire, y el navegador vuelve a preguntar.</li>
+</ul>
+<p>Esto significa que el servidor puede tener miles de conexiones abiertas al mismo tiempo, una por cada usuario que tenga la página abierta. Aquí es donde Node.js brilla, ya que su modelo asíncrono le permite manejar todas esas conexiones simultáneas sin necesidad de crear un hilo separado para cada una, algo que otros servidores tradicionales no harían tan eficientemente.</p>
+<h2 id="interfaz-http">INTERFAZ HTTP</h2>
+<p>Contexto general
+El texto forma parte del diseño de una aplicación web colaborativa para gestionar charlas (tipo conferencia o meetup). Antes de construir el servidor o el cliente, el autor propone pensar primero en la interfaz HTTP que los conectará, siguiendo buenas prácticas en el uso de métodos y cabeceras HTTP, y usando JSON como formato de intercambio de datos.</p>
+<p>Estructura de rutas
+Todo gira en torno a la ruta <code>/talks</code>. Las rutas que no empiecen con <code>/talks</code> servirán archivos estáticos como el HTML y JavaScript del cliente. Esto es una separación clara entre la API y los recursos front-end.</p>
+<p><strong>Operaciones disponibles (CRUD)</strong></p>
+<ul>
+<li><code>GET /talks</code> — Devuelve la lista completa de charlas, cada una con título, presentador, resumen y sus comentarios.</li>
+<li><code>PUT /talks/{título}</code> — Crea o reemplaza una charla. El cuerpo debe incluir presenter y summary en JSON.</li>
+<li><code>GET /talks/{título}</code> — Recupera una charla individual en formato JSON.</li>
+<li><code>DELETE /talks/{título}</code> — Elimina una charla específica.</li>
+<li><code>POST /talks/{título}/comments</code>— Agrega un comentario a una charla, enviando author y message.</li>
+</ul>
+<p>Como los títulos pueden contener espacios u otros caracteres especiales, deben codificarse con <code>encodeURIComponent</code> al construir la URL, por ejemplo <code>Cómo%20hacer%20el%20caballito</code>.</p>
+<p>Encuestas prolongadas (Long Polling)
+Esta es una de las partes más interesantes del diseño. El problema a resolver es: ¿cómo sabe el cliente cuándo hay cambios en la lista de charlas sin estar preguntando constantemente al servidor?
+La solución usa dos mecanismos HTTP que normalmente se asocian al caché:</p>
+<p><code>ETag</code>: el servidor incluye este header en sus respuestas con un número de versión que representa el estado actual de la lista. Cada vez que algo cambia, ese número se incrementa.
+<code>If-None-Match:</code> el cliente, en su próxima solicitud, envía el ETag que recibió antes. Si nada cambió, normalmente el servidor respondería con un <code>304 Not Modified</code> de forma inmediata.</p>
+<p>Sin embargo, aquí se introduce una variación importante: en lugar de responder de inmediato con <code>304</code>, el servidor retiene la respuesta y espera hasta que la lista cambie o hasta que pase un tiempo máximo. Para indicar esta intención, el cliente incluye el header <code>Prefer: wait=90</code>, que le dice al servidor que está dispuesto a esperar hasta 90 segundos. Solo cuando hay algo nuevo, el servidor responde con <code>200 OK</code> y los datos actualizados, incluyendo el nuevo ETag. Esto reduce enormemente la cantidad de solicitudes innecesarias, a diferencia del polling tradicional donde el cliente pregunta repetidamente en intervalos fijos.</p>
+<h2 id="el-servidor">EL SERVIDOR</h2>
+<p>Comencemos construyendo la parte del programa del lado del servidor. El
+código en esta sección se ejecuta en Node.js.</p>
+<h2 id="enrutamiento">ENRUTAMIENTO</h2>
+<p>El servidor se construye usando <code>createServer</code> de Node.js para iniciar un servidor HTTP. El desafío principal es que, al recibir una solicitud, el servidor necesita distinguir entre los distintos tipos de peticiones según su método HTTP (GET, PUT, POST, DELETE) y su ruta (/talks, /talks/{título}, etc.).</p>
+<p><strong>El problema con las cadenas de</strong> <code>if</code></p>
+<p>Una solución básica sería usar una larga cadena de declaraciones if para evaluar cada combinación de método y ruta. Sin embargo, esto rápidamente se vuelve difícil de leer y mantener a medida que crece el número de rutas. El autor reconoce que existe una manera más elegante de resolverlo.</p>
+<p><strong>¿Qué es un enrutador?</strong></p>
+<p>Un enrutador es un componente cuya responsabilidad es recibir una solicitud entrante y dirigirla hacia la función específica que sabe cómo manejarla. En lugar de anidar condiciones, el enrutador permite registrar manejadores asociando un método HTTP y un patrón de ruta (expresión regular) con una función. Cuando llega una solicitud, el enrutador la compara contra los patrones registrados y ejecuta el manejador correspondiente.
+Por ejemplo, se le puede indicar al enrutador que las solicitudes <code>PUT</code> cuya ruta coincida con <code>/^\/talks\/([^\/]+)$/</code> deben ser atendidas por una función específica. Esa expresión regular representa <code>/talks/</code> seguido de un título de charla (cualquier texto que no contenga otra barra <code>/</code>).</p>
+<p><strong>Extracción de parámetros</strong></p>
+<p>Una funcionalidad importante del enrutador es que no solo identifica qué manejador usar, sino que también extrae las partes relevantes de la ruta. Esto se logra mediante los grupos de captura de las expresiones regulares, es decir, las partes entre paréntesis. En el ejemplo anterior, el título de la charla quedaría capturado y se pasaría directamente como argumento a la función manejadora, evitando que cada función tenga que parsear la URL por su cuenta.</p>
+<p><strong>Implementación propia vs. paquetes externos</strong></p>
+<p>Aunque existen varios paquetes de enrutadores bien probados disponibles en NPM, el autor decide escribir uno desde cero con el propósito de ilustrar el principio detrás de su funcionamiento. Esto es coherente con el enfoque pedagógico del texto: entender cómo funciona algo internamente antes de delegar esa responsabilidad a una librería externa.</p>
+<pre><code class="language-js">export class Router {
+
+    constructor(){
+        this.rutas = [];
+    }
+
+    add(metodo, ruta, manejador){
+        this.rutas.push({metodo,ruta,manejador});
+    }
+    async resolver(solicitud, contexto) {
+       let {pathname} = new URL(solicitud.url,&quot;http://d&quot;)
+
+       for(let {metodo,ruta,manejador} of this.rutas ) {
+        let match = ruta.exec(pathname);
+        if(!match || solicitud.metodo != metodo) continue
+        let partes = match.slice(1).map(decodeURIComponent);
+        return manejador(contexto, ...partes, solicitud)
+       }
+
+    }
+
+}
+</code></pre>
+<p><strong>¿Qué es y qué exporta el módulo?</strong></p>
+<p>El módulo exporta una clase llamada <code>Router</code>. A partir de ella se crea un objeto enrutador que tiene dos responsabilidades principales: registrar manejadores y resolver solicitudes.</p>
+<p>Método <code>add</code></p>
+<p>Permite registrar manejadores asociando:</p>
+<ul>
+<li>Un <strong>método HTTP</strong> (GET, PUT, POST, DELETE)</li>
+<li>Un patrón de URL (expresión regular)</li>
+<li>Una función manejadora</li>
+</ul>
+<p>Método <code>resolver</code></p>
+<p>Cuando llega una solicitud, resolve busca entre los manejadores registrados cuál coincide con el método y la URL de esa solicitud, y ejecuta su función manejadora devolviendo su resultado.</p>
+<p>El argumento <code>context</code></p>
+<p>Las funciones manejadoras reciben un valor <code>context</code> que se les pasa desde <code>resolver</code>. Esto es importante porque así los manejadores pueden acceder al estado del servidor sin necesidad de variables globales.</p>
+<p>Parámetros que recibe el manejador</p>
+<p>Cada manejador recibe tres cosas:</p>
+<ul>
+<li>El <code>context</code> (estado del servidor)</li>
+<li>Las cadenas capturadas por los grupos () de la expresión regular, ya decodificadas con <code>decodeURIComponent</code> para convertir caracteres como <code>%20</code> en espacios normales</li>
+<li>El objeto <code>solicitud</code> completo</li>
+</ul>
+<h2 id="sirviendo-archivos">SIRVIENDO ARCHIVOS</h2>
+<p>Cuando una solicitud no coincide con ninguna ruta del enrutador, se asume que es una petición de un archivo estático del directorio <code>public</code>.</p>
+<p>En lugar de construir un servidor de archivos propio, se usa el paquete de NPM <code>serve-static</code>, que es más robusto y soporta funciones avanzadas como caché, algo que una implementación propia del capítulo anterior no tenía.</p>
+<p><strong>¿Cómo funciona</strong> <code>serve-static</code> <strong>?</strong></p>
+<p>Se llama con un directorio raíz y devuelve una función manejadora que acepta tres argumentos:</p>
+<ul>
+<li><code>request</code></li>
+<li><code>response</code></li>
+<li>Una función <code>next</code> que se ejecuta si ningún archivo coincide</li>
+</ul>
+<p><strong>El orden de prioridad</strong> es importante: el servidor primero revisa si la solicitud corresponde a una ruta especial del enrutador, y solo si no coincide con ninguna, la pasa a <code>serve-static</code> para buscar un archivo. Por eso se envuelve en otra función, para controlar ese orden.</p>
+<p><strong>El servidor maneja dos tipos de solicitudes:</strong></p>
+<p><strong>Solicitudes de la API</strong> → manejadas por el enrutador.</p>
+<p>Son las rutas con lógica especial relacionadas a /talks:</p>
+<ul>
+<li><code>GET /talks</code> → obtener lista de charlas</li>
+<li><code>PUT /talks/titulo</code> → crear una charla</li>
+<li><code>DELETE /talks/titulo</code> → eliminar una charla</li>
+<li><code>POST /talks/titulo/comments</code> → agregar un comentario</li>
+</ul>
+<p>Estas se registran manualmente en el enrutador usando el método add, asociando un método HTTP, una expresión regular y una función manejadora.</p>
+<p><strong>Solicitudes de archivos estáticos</strong> → manejadas por <code>serve-static</code></p>
+<p>Son las peticiones de archivos físicos guardados en la carpeta public como <code>index.html</code>, <code>app.js</code>, <code>styles.css</code>, etc. No se registran en el enrutador porque sería imposible registrar cada archivo uno por uno. En cambio, <code>serve-static</code> las maneja automáticamente buscando el archivo en la carpeta <code>public</code>. </p>
+<pre><code class="language-js">import { error } from &quot;node:console&quot;;
+import {Router} from &quot;./router.js&quot;
+
+const router = new Router();
+const defaultHeaders =  {&quot;Content-Type&quot;: &quot;text/plain&quot;};
+
+export async function serveFromRouter(servidor,solicitud, respuesta, next) {
+
+    let resuleto = await router.resolver(solicitud,servidor)
+    .catch(error=&gt;{
+        if (error.status != null) return error;
+        return {body: String(error), status: 500};
+    })
+    if(!resuleto) return next()
+    let {body, status = 200, headers = defaultHeaders } = await resuleto;
+
+    response.writeHead(status, headers);
+    respuesta.end()
+
+}
+</code></pre>
+<p><code>serveFromRouter</code> tiene la misma interfaz que fileServer, recibiendo (request, response, next). Esto permite encadenar manejadores donde cada uno puede manejar la solicitud o pasarla al siguiente llamando a next().
+El flujo es:</p>
+<ul>
+<li><code>serveFromRouter</code> → intenta resolver la solicitud con el enrutador</li>
+<li><code>fileServer</code> → si no coincidió, busca un archivo estático</li>
+<li><code>notFound</code> → si tampoco encontró nada, responde con 404</li>
+</ul>
+<p><strong>¿Cómo funciona internamente</strong> <code>serveFromRouter</code>?</p>
+<p>Llama a router.resolve() que devuelve una promesa. Hay tres posibles resultados:</p>
+<ul>
+<li>Error controlado (con error.status) → se devuelve el error tal cual</li>
+<li>Error inesperado → se responde con 500</li>
+<li><code>null</code> (ninguna ruta coincidió) → se llama a next() para pasar al siguiente manejador</li>
+</ul>
+<p>Si sí hay resultado, se extraen <code>body</code>, <code>status</code> (por defecto <code>200</code>) y <code>headers</code> (por defecto <code>text/plain</code>), y se envía la respuesta.</p>
+<h2 id="charlas-como-recursos">CHARLAS COMO RECURSOS</h2>
+<p><strong>Almacenamiento de charlas</strong></p>
+<p>Las charlas se almacenan en la propiedad <code>talks</code> del servidor, un objeto donde cada propiedad es el título de la charla. Se registran manejadores en el enrutador para exponerlas como recursos HTTP bajo<code>/charlas/[título]</code>.</p>
+<p><strong>GET de una charla</strong></p>
+<p>Busca el título en <code>server.talks</code>:</p>
+<ul>
+<li>Si existe → devuelve los datos en JSON con status <code>200</code></li>
+<li>Si no existe → devuelve un error <code>404</code> con un mensaje</li>
+</ul>
+<p><strong>DELETE de una charla</strong></p>
+<p>Si existe → la elimina con delete y llama a server.updated()
+En ambos casos devuelve status 204 (sin contenido)</p>
+<p>Vale la pena notar que el 204 se devuelve siempre, independientemente de si la charla existía o no.</p>
               
             </div>
           </div><footer>

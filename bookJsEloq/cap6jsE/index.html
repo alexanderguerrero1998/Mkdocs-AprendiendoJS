@@ -110,20 +110,26 @@ operaciones que el codigo externo puede utilizar en el.</p>
 codigo arbitrariamente complicado, pero que exponer un conjunto de metodos y propiedades
 que se supone que las personas que trabajan con el deben usar.</p>
 <h2 id="metodos-de-objetos">METODOS DE OBJETOS</h2>
-<p>Un metodo es una propiedad que tienen como valor una funcion.
-<code>let persona = {</code><br><code>nombre : "Alex",</code><br><code>saludar : function() {console.log("Hola!")</code><br><code>}};</code>
-<strong>nombre</strong> → propiedad con valor de texto
-<strong>saludar</strong> → propiedad con <strong>valor de función</strong> → cuando la llamas</p>
+<p>Un metodo es una propiedad que tienen como valor una funcion.</p>
+<pre><code class="language-js">let persona = {  
+  nombre : &quot;Alex&quot;, 
+  saludar : function() {console.log(&quot;Hola!&quot;)
+
+}};
+</code></pre>
+<p><strong>nombre</strong> → propiedad con valor de texto</p>
+<p><strong>saludar</strong> → propiedad con <strong>valor de función</strong> → cuando la llamas</p>
 <p>Cuando una funcion es asignada como propiedad de un objeto 
 — y esta es invocada por el objeto que la contiene — la vinculacion 
-<em>this</em> definida en su cuerpo apunta directamente al objeto que la llamo.<br></p>
+<em>this</em> definida en su cuerpo apunta directamente al objeto que la llamo.</p>
 <pre><code class="language-js">function speak (line) {
-  console.log(`El conejo '${this.type }' dice '${line}'`)
+  console.log(`El conejo ${this.type } dice ${line}`)
 }
 
-let conejoBlanco= { type:&quot;blanco&quot;, speak }; //← (Aqui esta la funcion speak definida como &quot;Property Shorthand&quot; es lo mismo que, speak:speak)
+let conejoBlanco = { type: &quot;blanco&quot;, speak }; //← (Aqui esta la funcion speak definida como &quot;Property Shorthand&quot; es lo mismo que, speak:speak)
 
 conejoBlanco.speak(&quot;Oh, mi pelaje y mis bigotes&quot;) //← (Aqui se INVOCA la funcion)
+
 // → El conejo blanco dice 'Oh, mi pelaje y mis bigotes'
 </code></pre>
 <p>Dado que cada funcion tiene su propio <strong>this</strong>, no puedes referenciar al this del 
@@ -140,7 +146,7 @@ console.log(buscador.find([4,5]));
 // → true
 </code></pre>
 <p>Se puede ver como <strong>this.value</strong> definida en funcion (<strong>find</strong>) hace referencia a la propiedad value del objeto que la contiene.
-Tambien se puede ver que no la funcion no esta asignada a una propiedad, quiere decir que tiene abreviatura "Method Definition Shorthand", esto es lo mismo que decir, </p>
+Tambien se puede ver que la funcion no esta asignada a una propiedad, quiere decir que tiene abreviatura "Method Definition Shorthand", esto es lo mismo que decir, </p>
 <pre><code class="language-js">find : function(array){
         return array.some(v =&gt; v == this.value)
         }
@@ -211,7 +217,7 @@ ages.set(&quot;Julia&quot;, 62)
 console.log(`Julia tiene ${ ages.get(&quot;Julia&quot;) }`) // → Julia tiene 62
 console.log(&quot;¿Se conoce la edad de Jack?&quot;, ages.has(&quot;Jack&quot;))// → ¿Se conoce la edad de Jack? false
 </code></pre>
-<p>Los metodos set, get y has forman parte del objeto Map</p>
+<p>Los metodos <code>set</code>, <code>get</code> y <code>has</code> forman parte del objeto Map</p>
               
             </div>
           </div><footer>

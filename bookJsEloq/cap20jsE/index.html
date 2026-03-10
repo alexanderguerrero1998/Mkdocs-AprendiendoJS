@@ -186,9 +186,15 @@ writeFile(&quot;texto.txt&quot;,&quot;Node estuvo aqui!&quot;, (err)=&gt;{
     else console.log(&quot;Archivo escito&quot;)
 }) // → Node estuvo aqui!
 </code></pre>
-<p>El módulo <code>node:fs</code> contiene muchas otras funciones utiles: <code>readdir</code> te dará
-los archivos en un directorio como un array de cadenas, <code>stat</code> recuperará información sobre un archivo, <code>rename</code> cambiará el nombre de un archivo, <code>unlink</code> lo
-eliminará, entre otros.</p>
+<p>El módulo <code>node:fs</code> contiene muchas otras funciones utiles: </p>
+<ul>
+<li><code>readdir</code> te dará
+los archivos en un directorio como un array de cadenas, </li>
+<li><code>stat</code> recuperará información sobre un archivo, </li>
+<li><code>rename</code> cambiará el nombre de un archivo, </li>
+<li><code>unlink</code> lo
+eliminará, entre otros.</li>
+</ul>
 <p>Node ofre tres formas de trabajar con archivos:</p>
 <ul>
 <li>Usando callbacks con <code>node:fs</code> </li>
